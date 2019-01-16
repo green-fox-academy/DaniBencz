@@ -1,0 +1,53 @@
+body{
+	margin: 0;
+	background-image: url(psycho.jpg);
+	background-size:     cover;
+    background-repeat:   no-repeat;
+	background-position: center center;
+	color: beige;
+}
+
+#main{
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+#header{
+	background-color: gray;
+	margin-top: 0;
+}
+
+input{
+}
+
+textarea{
+	width: 100%;
+	resize: none;
+}
+
+#header h1{
+	margin-left: 10%;
+	margin-top: 0;
+}
+
+input, textarea{
+	border: 1px solid gray;
+}
+
+h2, h3{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#button {
+	width: 100px;
+	border-radius: 4px;
+}
+
+#newEntry{
+
+}
+
+#previousEntries{
+
+}
