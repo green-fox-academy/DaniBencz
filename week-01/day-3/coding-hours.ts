@@ -3,6 +3,7 @@
 let daily = 6;
 let daysPerWeek= 5;
 let weeks = 17;
+
 let percent = daily*daysPerWeek/0.52;
 let p = percent.toFixed(1);
 
