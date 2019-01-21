@@ -2,10 +2,13 @@
 export{}
 
 let firstList = [1, 2, 3];
-let secondList = [4, 5];
+let secondList = [4, 5,];
 
 if(firstList.length < secondList.length){
     console.log("second list has more elements");
+
+}   else if (firstList.length == secondList.length) {
+        console.log("the lists are equally long");
 
 }   else {
         console.log("first list has more elements");
