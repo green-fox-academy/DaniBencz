@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 export{}
 
 let abc = ["Arthur", "Boe", "Chloe"];

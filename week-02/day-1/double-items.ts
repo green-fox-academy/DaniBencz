@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 export{}
 
 let drinks = ['Gin', 'Whiskey', 'Wine', 'Beer'];

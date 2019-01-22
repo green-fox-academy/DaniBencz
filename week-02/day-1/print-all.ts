@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 export{}
 
 let integers = [4, 5, 6, 7];

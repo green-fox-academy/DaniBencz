@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 export{}
 
 let magicNumbers = [1, 3, 5, 7];

@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 export{}
 
 let r = [54, 23, 66, 12];

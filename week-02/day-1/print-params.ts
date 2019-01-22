@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 export{}
 
 function printParams (a, b, c = "hello", d?){

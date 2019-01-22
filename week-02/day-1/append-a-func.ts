@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 export{}
 
 let typo :string = 'Chinchill';

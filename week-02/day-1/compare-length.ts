@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 export{}
 
 let firstList = [1, 2, 3];
