@@ -17,7 +17,7 @@ function makingMatches(a, b): string[]{
             if(a[i] !== undefined){
                 matches.push(b[i]);
             }
-            matches.push(b[i]);
+            matches.push(a[i]);
         }
 
     } else{
