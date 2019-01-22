@@ -1,3 +1,4 @@
+'use strict'
 
 let Count: number = 4;
 let x :string = "";
@@ -9,7 +10,7 @@ for (let i :number = 1; i <= Count; i++){
         x = x + " ";
     }
 
-    for (let k :number = 0; k < i + (i - 1); k++){
+    for (let j :number = 0; j < i + (i - 1); j++){
         y = y + "*";
     }
 
