@@ -18,7 +18,13 @@ function reverse(a: string): string{
     return a.split("").reverse().join(""); 
 }
 
+/*This on works too:
+function reverse(a){
+    let s2 = "";
+    for(let i :number = a.length -1; i>= 0; i--){
+        s2 += a[i];
+    }
+    return s2;
+}*/
+
 console.log(reverse(reversed));
-
-
-
