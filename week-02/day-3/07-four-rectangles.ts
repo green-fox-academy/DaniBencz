@@ -12,15 +12,10 @@ function drawRect(x, y, w, h){
 }
 
 for(let i: number = 0; i < 4; i ++){
-    console.log(i);
     let a = Math.floor(Math.random() * 400) + 1;
-    console.log(a);
     let b = Math.floor(Math.random() * 400) + 1;
-    console.log(b);
     let c = Math.floor(Math.random() * 400) + 1;
-    console.log(c);
     let d = Math.floor(Math.random() * 400) + 1;
-    console.log(d);
     drawRect(a, b, c, d);
 }
 
