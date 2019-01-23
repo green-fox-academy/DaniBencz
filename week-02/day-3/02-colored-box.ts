@@ -5,7 +5,7 @@ const ctx = canvas.getContext('2d');
 
 // DO NOT TOUCH THE CODE ABOVE THIS LINE
 
-function colorBox(x1, y1, x2, y2, color): any{
+function colorBox(x1, y1, x2, y2, color): void{
     ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
