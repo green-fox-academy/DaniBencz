@@ -5,14 +5,23 @@ const accounts: any[] = [
     { clientName: 'Igor', accountNumber: 11234543, balance: 203004099.2 },
     { clientName: 'Vladimir', accountNumber: 43546731, balance: 5204100071.23 },
     { clientName: 'Sergei', accountNumber: 23456311, balance: 1353600.0 }
-];
+  ];
 
 // Create function that returns the name and balance of cash on an account in a list
 // getNameAndBalance(11234543);
 // should return: ['Igor', 203004099.2]
 
-function getNameAndBalance(accounts.accountNumber){
-    console.log(accounts.clientName.balance);
+function getNameAndBalance(aNumber: number): any[]{
+
+    let result: any [] = [];
+    for (let i: number = 0; i < accounts.length; i++){
+        if(accounts[i].accountNumber === aNumber){
+            result.push(accounts[i].clientName);
+            result.push(accounts[i].balance);
+        }
+    }
+    console.log(result);
+    return result;
 }
 
 getNameAndBalance(11234543);
@@ -38,8 +47,3 @@ function transferAmount(a, b, c, d){
   //	{ clientName: 'Sergei', accountNumber: 23456311, balance: 1354100.0 }
   //]
   
-  export = {
-    getNameAndBalance,
-    transferAmount,
-    accounts
-  };
