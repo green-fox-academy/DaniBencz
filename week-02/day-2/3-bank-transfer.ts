@@ -24,7 +24,7 @@ function getNameAndBalance(aNumber: number): any[] {
     return result;
 }
 
-//getNameAndBalance(11234543);
+getNameAndBalance(11234543);
 
 // Create function that transfers an amount of cash from one account to another
 // it should have four parameters:
