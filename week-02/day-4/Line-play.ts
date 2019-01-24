@@ -5,29 +5,26 @@ const ctx = canvas.getContext('2d');
 
 // DO NOT TOUCH THE CODE ABOVE THIS LINE
 
+let i: number = 20;
+let density :number = 30;
 
-let x: number = 20;
-
-for (let i: number = 0; i < 20; i++) {
-    ctx.moveTo(x, 0);
-    ctx.lineTo(400, x);
+for (i; i < canvas.width; i += density) {
+    ctx.moveTo(i, 0);
+    ctx.lineTo(canvas.height, i);
     ctx.strokeStyle = "purple";
     ctx.stroke();
-    x += 20;
-}
-
-x = 0;
+}   i = 0;
 
 function drawLines(){
-    for (let i: number = 0; i < 20; i++) {
+    for (i; i < canvas.width; i += density) {
         ctx.beginPath();
-        ctx.moveTo(0, 400 - x);
-        ctx.lineTo(400 - x, 400);
+        ctx.moveTo(0, canvas.height - i);
+        ctx.lineTo(canvas.height - i, canvas.width);
         ctx.strokeStyle = "green";
         ctx.stroke();
-        x += 20;
     }
 }
+
 setTimeout(() => {
     drawLines();
 }, 1000);
