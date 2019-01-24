@@ -3,8 +3,6 @@
 const canvas = document.querySelector('.main-canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d');
 
-// DO NOT TOUCH THE CODE ABOVE THIS LINE
-
 function colorBox(x1, y1, x2, y2, color): void{
     ctx.beginPath();
     ctx.moveTo(x1, y1);

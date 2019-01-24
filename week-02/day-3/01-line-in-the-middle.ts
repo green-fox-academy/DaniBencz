@@ -3,8 +3,6 @@
 const canvas = document.querySelector('.main-canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d');
 
-// DO NOT TOUCH THE CODE ABOVE THIS LINE
-
 ctx.beginPath();
 ctx.moveTo(0, 200);
 ctx.lineTo(600, 200);
