@@ -42,7 +42,7 @@ function printIngr(myArray) {
 	}
 	dashes = dashes + "+---------------+----------+";
 
-	//adds spaves to 'Ingredient' label
+	//adds spaces to 'Ingredient' label
 	let ingredtient: string = "Ingredient"
 	while (ingredtient.length < nameLength) {
 		ingredtient = ingredtient + " ";
@@ -61,7 +61,7 @@ function printIngr(myArray) {
 		} else {
 			cooling = "No ";
 		}
-		console.log("| " + myArray[i].name + "| " + cooling + 
+		console.log("| " + myArray[i].name + "| " + cooling +
 			"           |" + myArray[i].inStock + "         |");
 	}
 
@@ -71,6 +71,7 @@ function printIngr(myArray) {
 const ingredients: any[] = [
 	{ name: 'vodka', inStock: 1, needsCooling: true },
 	{ name: 'coffee_liqueur', inStock: 0, needsCooling: true },
+	{ name: 'bambi', inStock: 9, needsCooling: true},
 	{ name: 'fresh_cream', inStock: 1, needsCooling: true },
 	{ name: 'captain_morgan_rum', inStock: 2, needsCooling: true },
 	{ name: 'mint_leaves', inStock: 0, needsCooling: false },
