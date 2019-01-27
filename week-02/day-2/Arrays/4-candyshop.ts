@@ -1,7 +1,7 @@
 'use strict';
 
 let shopItems: any[] = ['Cupcake', 2, 'Brownie', false];
-let newWords: any [] = ['Croissant', 'Ice cream'];
+let newWords: any[] = ['Croissant', 'Ice cream'];
 
 // Accidentally we added "2" and "false" to the array.
 // Your task is to change from "2" to "Croissant" and change from "false" to "Ice cream"
@@ -9,17 +9,19 @@ let newWords: any [] = ['Croissant', 'Ice cream'];
 // Create a function called sweets() which takes the list as a parameter.
 // Expected output: "Cupcake", "Croissant", "Brownie", "Ice cream"
 
-function sweets (targetArray, sourceArray){
+function sweets(targetArray, sourceArray) {
 
-  map1 = sourceArray.map(function(element){
+  let n: number = 0;
+  for (let i: number = 0; i < targetArray.length; i++) {
+    if (typeof targetArray[i] !== 'string') {
+      targetArray.splice(i, 1, sourceArray[n]);
+      n++;
+    }
 
-  });
+  }
 
-  shopItems.splice(1, 1, "Croissant");
-
+  console.log(targetArray);
 
 }
-
-console.log(shopItems);
 
 sweets(shopItems, newWords);
