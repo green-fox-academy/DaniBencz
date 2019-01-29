@@ -4,7 +4,7 @@
 // Create a function that accepts 'listOfNumbers' as an input
 // it should return "true" if it contains all, otherwise "false"
 
-let listOfNumbers: number[] = [2, 4, 6, 8, 10, 12, 14, 17];
+let listOfNumbers: number[] = [2, 4, 6, 8, 10, 12, 14, 16];
 
 function checkNums(anArray) {
 
@@ -13,16 +13,9 @@ function checkNums(anArray) {
   for (let i: number = 0; i < anArray.length; i++) {
     if (anArray[i] === 4 || anArray[i] === 8 || anArray[i] === 12 || anArray[i] === 16) {
       howMany.push(anArray[i]);
-      console.log(howMany);
     }
   }
-  
-  //This will always return false, but why?
-  if (howMany === [4, 8, 12, 16]) {
-    console.log(true);
-  } else {
-    console.log(false);
-  }
+  console.log(howMany.join('') === '481216');
 }
 
 checkNums(listOfNumbers);
