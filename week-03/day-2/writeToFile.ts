@@ -1,3 +1,6 @@
+'use strict';
+export{}
+
 let fs = require ('fs');
 
 function writeTo(fileName: string, newContent: string){

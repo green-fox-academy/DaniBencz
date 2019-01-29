@@ -18,6 +18,7 @@ let hashmap = {
   3: 'say goodbye '
 };
 
+
 let map1 = notSoCrypticMessage.map(function (element) {
   return hashmap[element];
 });
