@@ -13,7 +13,7 @@ function readMyFile(fileName: string): string {
     let fileContent = fs.readFileSync(fileName, 'utf-8')
     return fileContent;
   }
-  catch (x) {
+  catch (e) {
     return 'Unable to read file: my-file.txt';
   }
 }

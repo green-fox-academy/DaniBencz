@@ -12,7 +12,7 @@ let fs = require('fs');
 function numberOfLines(fileName: string): number {
   try {
     return fs.readFileSync(fileName, 'utf-8').split('\r\n').length;
-  } catch (x) {
+  } catch (e) {
     return 0;
   }
 }
