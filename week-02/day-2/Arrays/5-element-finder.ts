@@ -5,7 +5,7 @@
 
 const numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
 
-function containsSeven(anArray) {
+function containsSeven(anArray): string {
 
   let answer: string = 'Nooooo';
   numbers.forEach(function (element) {
@@ -14,6 +14,7 @@ function containsSeven(anArray) {
     }
   });
   console.log(answer);
+  return answer;
 }
 
 containsSeven(numbers);

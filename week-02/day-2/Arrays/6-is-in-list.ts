@@ -5,6 +5,14 @@
 // it should return "true" if it contains all, otherwise "false"
 
 let listOfNumbers: number[] = [2, 4, 6, 8, 10, 12, 14, 16];
-console.log(checkNums(listOfNumbers));
 
-export = checkNums;
+function checkNums(anArray){
+  
+  for(let i: number = 0; i < anArray.length; i++){
+    if(anArray[i] === 4 || 8 || 12 || 16){
+      console.log(anArray[i]);
+    }
+  }
+}
+
+checkNums(listOfNumbers);
