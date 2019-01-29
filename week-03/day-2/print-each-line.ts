@@ -8,13 +8,12 @@ export { }
 
 let fs = require('fs');
 
-function readMyFile(fileName: string) {
+function readMyFile(fileName: string): string {
   try {
     let fileContent = fs.readFileSync(fileName, 'utf-8')
     return fileContent;
   }
   catch (x) {
-    //console.log(error);
     return 'Unable to read file: my-file.txt';
   }
 }
