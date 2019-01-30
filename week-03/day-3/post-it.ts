@@ -18,3 +18,4 @@ const object3 = new PostIt('yellow', 'Superb', 'green');
 const object4 = new PostIt();
 
 console.log(object4);
+console.log();
