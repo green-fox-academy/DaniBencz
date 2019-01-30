@@ -1,5 +1,5 @@
 'use strict';
-export { }
+export{}
 
 // Read all data from 'log.txt'.
 // Each line represents a log message from a web server
@@ -31,26 +31,20 @@ function IPratio(logFile) {
     let post: number = 0;
 
     for (let i: number = 0; i < newArray.length; i++) {
-      //console.log(newArray[i].split('   ')[2].length);
-
-      //try substring
-      if (newArray[i].split('   ')[2] === 'GET /') {
-        console.log(i);
+      if (newArray[i].substring(41, 42) === 'G') {
         get++;
       }
 
-      /* if (newArray[i].split('   ')[2] === 'POST /'){
+      if (newArray[i].substring(41, 42) === 'P') {
         post++;
-      } */
+      }
     }
 
-    console.log(get);
-    console.log(post);
-    //console.log('GET/Post ratio is ' + get / post);
+    console.log('GET/Post ratio is ' + get / post);
 
   } catch (e) {
   }
 }
 
-//IPlogs('logs.txt');
+IPlogs('logs.txt');
 IPratio('logs.txt');
