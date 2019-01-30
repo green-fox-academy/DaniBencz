@@ -1,4 +1,3 @@
-import { userInfo } from "os";
 
 /*  -  Create `Sharpie` class
      -  We should know about each sharpie their `color` (which should be a string), `width` (which will be a floating point number), `inkAmount` (another floating point number)
