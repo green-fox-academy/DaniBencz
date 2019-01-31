@@ -17,8 +17,6 @@ fleet.add(thing2);
 fleet.add(thing3);
 fleet.add(thing4);
 
-//console.log(fleet.things);
-
 function print(some) {
   for (let i: number = 0; i < some.things.length; i++) {
     if (some.things[i].completed) {
