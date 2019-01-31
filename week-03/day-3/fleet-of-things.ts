@@ -20,9 +20,9 @@ fleet.add(thing4);
 function print(some) {
   for (let i: number = 0; i < some.things.length; i++) {
     if (some.things[i].completed) {
-      console.log(i + 1 + '. ' + '[x] ' + some.things[i].name);
+      console.log(i + 1 + '. [x] ' + some.things[i].name);
     } else {
-      console.log(i + 1 + '. ' + '[ ] ' + some.things[i].name);
+      console.log(i + 1 + '. [ ] ' + some.things[i].name);
     }
   }
 }

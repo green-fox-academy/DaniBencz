@@ -6,4 +6,4 @@ function expon(base: number, power: number): number {
     return base * expon(base, power - 1);
   }
 }
-console.log(expon(3, 3));
+console.log(expon(4, 5));
