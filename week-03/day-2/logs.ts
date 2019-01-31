@@ -33,9 +33,7 @@ function IPratio(logFile) {
     for (let i: number = 0; i < newArray.length; i++) {
       if (newArray[i].substring(41, 42) === 'G') {
         get++;
-      }
-
-      if (newArray[i].substring(41, 42) === 'P') {
+      } else {
         post++;
       }
     }
