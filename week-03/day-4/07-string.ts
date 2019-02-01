@@ -16,4 +16,4 @@ function xToY(text: string): string {
   return firstChar.concat(xToY(text.substring(1)));
 }
 
-console.log(xToY('Xerxes and Xavier went to mexico.'));
+console.log(xToY('Xerxes and Xavier went to Mexico.'));
