@@ -29,7 +29,6 @@ function printIngr(myArray) {
 	for (let i: number = 0; i < myArray.length; i++) {
 		while (myArray[i].name.length < nameLength) {
 			myArray[i].name = myArray[i].name + " ";
-
 		}
 	}
 
