@@ -1,3 +1,4 @@
+'use strict';
 
 class Person {
 
@@ -63,7 +64,6 @@ class Mentor extends Person {
   introduce(): void {
     console.log(`Hi, I'm ${this.name}, a ${this.age} year old ${this.gender} ${this.level} mentor.`);
   }
-
 }
 
 class Sponsor extends Person {

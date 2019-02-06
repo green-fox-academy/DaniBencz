@@ -1,3 +1,5 @@
+'use strict';
+
 import { Plant } from './plant';
 
 class Flower extends Plant {

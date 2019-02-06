@@ -1,3 +1,4 @@
+'use strict';
 
 import { Tree } from './tree';
 import { Flower } from './flower';
@@ -20,6 +21,7 @@ class Garden {
     this.trees.push(flower);
   }
 
+  //this checks which one need irrigation
   determineWaterNeed() {
     this.trees.forEach(tree => {
       tree.determineWaterNeed();
@@ -33,7 +35,7 @@ class Garden {
   irigating(units: number) {
 
     let plantsThatNeedWater: number = 0;
-    
+
     //this check how many plants need water
     this.trees.forEach(tree => {
       if (tree.needsWater) {
@@ -45,7 +47,7 @@ class Garden {
         plantsThatNeedWater++;
       }
     });
-    
+
     console.log(`Watering with ${units}`);
     let availableForPlant: number = (units / plantsThatNeedWater);
 
@@ -62,7 +64,6 @@ class Garden {
     });
     console.log(`Plants got ${availableForPlant} units of water each`);
   }
-
 }
 
 export { Garden };

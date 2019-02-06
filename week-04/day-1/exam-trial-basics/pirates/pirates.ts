@@ -1,14 +1,18 @@
 'use strict';
 
+//this is the updated version, corrected after exam day
+
 class Pirate {
 
+  //removed '?' from optional variable in fileds
   name: string;
   gold: number;
-  captain?: boolean;
-  woodenLeg?: boolean;
-  health: number = 10;
+  captain: boolean;
+  woodenLeg: boolean;
+  health: number;
 
-  constructor(pName: string, GD: number, leg?: boolean, rank?: boolean, HP?: number) {
+  //moved default values of parameters here
+  constructor(pName: string, GD: number = 10, leg?: boolean, rank?: boolean, HP: number = 10) {
     this.name = pName;
     this.gold = GD;
     this.health = HP;
@@ -16,7 +20,8 @@ class Pirate {
     this.woodenLeg = leg;
   }
 
-  work() {
+  //added return type void
+  work(): void {
     if (this.captain) {
       this.health -= 5;
       this.gold += 10;
@@ -26,7 +31,7 @@ class Pirate {
     }
   }
 
-  party() {
+  party(): void {
     if (this.captain) {
       this.health += 10;
     } else {
@@ -52,15 +57,29 @@ class Ship {
 
   pirateList: Pirate[] = [];
 
+  //adding crew to ship, only 1 captain allowed, needs further implementation
+  addNewPirate(pirate: Pirate): void {
+    if (this.isThereCaptain() && pirate.captain) {
+      this.pirateList.push(pirate);
+    }
+  }
+
+  //filtering for captain, needs further implementation
+  isThereCaptain(): boolean {
+    const result = this.pirateList.some(function (pirate: Pirate): boolean {
+      return pirate.captain === true;
+    })
+  }
+
   constructor(pirates: Pirate[] = []) {
     this.pirateList = pirates;
   }
 
   getPoorPirates(): string[] {
     let poorPirates: string[] = [];
-    this.pirateList.forEach((element) => {
-      if (element.gold < 15 && element.woodenLeg) {
-        poorPirates.push(element.name);
+    this.pirateList.forEach((pirate) => {
+      if (pirate.gold < 15 && pirate.woodenLeg) {
+        poorPirates.push(pirate.name);
       }
     });
     return poorPirates;
@@ -68,8 +87,8 @@ class Ship {
 
   getGolds(): number {
     let allGold: number = 0;
-    this.pirateList.forEach((element) => {
-      allGold += element.gold;
+    this.pirateList.forEach((pirate) => {
+      allGold += pirate.gold;
     });
     return allGold;
   }
@@ -81,13 +100,11 @@ class Ship {
     return ('Pirates went to party after last day aboard!');
   }
 
-  prepareForBattle() {
-    this.pirateList.forEach(element => {
-      element.work();
-      element.work();
-      element.work();
-      element.work();
-      element.work();
+  prepareForBattle(): string {
+    this.pirateList.forEach(pirate => {
+      for (let i: number = 1; i < 6; i++) {
+        pirate.work();
+      }
     });
     this.lastDayOnTheShip();
     return ('Pirates went to work.');

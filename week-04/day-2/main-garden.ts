@@ -1,3 +1,4 @@
+'use strict';
 
 import { Tree } from './tree';
 import { Flower } from './flower';
