@@ -1,7 +1,7 @@
 'use strict';
 
 export class Apple {
-  getApple(){
+  getApple(): string{
     return 'apple';
   }
 }
