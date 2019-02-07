@@ -16,7 +16,9 @@
 
 1_template.ts
 testing_other/
-Untitled-1.ts
-practise.ts
+Untitled*.ts
+practise*.ts
 MatRV/
 node_modules/
+package-lock.json
+package.json
