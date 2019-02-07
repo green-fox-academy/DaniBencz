@@ -24,10 +24,8 @@ function isSymmetric(array: number[][]) {
 
 let newArray: number[][] = [
   [1, 2, 3],
-  [2, 5, 6],
+  [4, 5, 6],
   [3, 6, 9]
 ];
 
 console.log(isSymmetric(newArray));
-
-//console.log(newArray.length);
