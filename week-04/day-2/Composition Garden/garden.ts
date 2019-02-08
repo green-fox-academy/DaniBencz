@@ -26,10 +26,10 @@ class Garden {
 
     //this check how many plants need water
     this.trees.forEach(tree => {
-      tree.hydrationLevel < tree.criticalLevel ? plantsThatNeedWater++ : ;
+      if (tree.hydrationLevel < tree.criticalLevel) { plantsThatNeedWater++; }
     });
     this.flowers.forEach(flower => {
-      flower.hydrationLevel < flower.criticalLevel ? plantsThatNeedWater++ : ;
+      if (flower.hydrationLevel < flower.criticalLevel) { plantsThatNeedWater++; }
     });
 
     console.log(`Watering with ${units}`);

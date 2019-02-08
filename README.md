@@ -1,6 +1,7 @@
-<h3>Other projects:<h3>
+# Other projects
 
-<h5>https://github.com/DaniBencz/patchwork<h5>
+> The webpage done for 0.homework
 <h5>https://danibencz.github.io/<h5>
+
 <br><h5>To Do App<h5>
-https://github.com/DaniBencz/todo-app
+<h5>https://github.com/DaniBencz/todo-app<h5>
