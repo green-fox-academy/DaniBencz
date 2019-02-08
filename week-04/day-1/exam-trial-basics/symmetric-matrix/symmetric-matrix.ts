@@ -1,5 +1,7 @@
 'use strict'
 
+export {};
+
 function isSymmetric(array: number[][]) {
 
   let isItSymmetric: boolean = undefined;
@@ -19,7 +21,6 @@ function isSymmetric(array: number[][]) {
   }
 
   return isItSymmetric;
-
 }
 
 let newArray: number[][] = [
@@ -28,4 +29,4 @@ let newArray: number[][] = [
   [3, 6, 9]
 ];
 
-console.log(isSymmetric(newArray));
+// console.log(isSymmetric(newArray));
