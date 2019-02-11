@@ -2,48 +2,51 @@
 
 class Irrigation {
 
-  hydrationLevel: number = 0;
+  retainsWater: number;
+  criticalLevel: number;
+  hydrationLevel: number;
+  plantNeedsWater: boolean;
 
-  irrigate(units?: number) {
-    this.hydrationLevel += units;
+  constructor(HL: number, RW: number, CL) {
+    this.hydrationLevel = HL;
+    this.retainsWater = RW;
+    this.criticalLevel = CL;
+    this.plantNeedsWater = true;
+  }
+
+  irrigate(units) {
+    this.hydrationLevel += (units * this.retainsWater);
+    this.criticalLevel > this.hydrationLevel ? this.plantNeedsWater = true : this.plantNeedsWater = false;
   }
 }
 
 export class Tree {
-  
-  irrigation = new Irrigation();
 
+  irrigation: Irrigation;
   color: string;
-  retainsWater: number = 0.4;
-  criticalLevel: number = 10;
-  hydrationLevel = this.irrigation.hydrationLevel;
 
   constructor(clr: string) {
+    this.irrigation = new Irrigation(0, 0.4, 10);
     this.color = clr;
   }
 
-  //how solve water retention?
-  irrigate() {
-    this.irrigation.irrigate();
+  irrigate(units: number) {
+    this.irrigation.irrigate(units);
   }
 }
 
 export class Flower {
 
-  irrigation = new Irrigation();
-
+  irrigation: Irrigation;
   color: string;
-  retainsWater: number = 7.5;
-  criticalLevel: number = 5;
-  hydrationLevel = this.irrigation.hydrationLevel;
 
   constructor(clr: string) {
+    this.irrigation = new Irrigation(0, 0.75, 5);
     this.color = clr;
   }
 
-  //how solve water retention?
-  irrigate() {
-    this.irrigation.irrigate();
+  irrigate(units: number) {
+    this.irrigation.irrigate(units);
   }
 }
 

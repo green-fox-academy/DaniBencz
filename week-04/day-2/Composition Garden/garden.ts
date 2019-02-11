@@ -2,51 +2,58 @@
 
 import { Tree, Flower } from './plants'
 
-class Garden {
+export class Garden {
 
   trees: Tree[] = [];
   flowers: Flower[] = [];
-
-  constructor(trees: Tree[] = [], flowers: Flower[] = []) {
-    this.trees = trees;
-    this.flowers = flowers;
-  }
 
   addTree(tree: Tree): void {
     this.trees.push(tree);
   }
 
   addFlower(flower: Flower): void {
-    this.trees.push(flower);
+    this.flowers.push(flower);
   }
 
-  irigating(units: number) {
+  irrigating(units: number) {
 
     let plantsThatNeedWater: number = 0;
+    console.log(`=========Watering with ${units} units`);
 
-    //this check how many plants need water
+    //this checks how many plants need water
     this.trees.forEach(tree => {
-      if (tree.hydrationLevel < tree.criticalLevel) { plantsThatNeedWater++; }
-    });
-    this.flowers.forEach(flower => {
-      if (flower.hydrationLevel < flower.criticalLevel) { plantsThatNeedWater++; }
+      if (tree.irrigation.plantNeedsWater) {
+        plantsThatNeedWater++;
+        console.log(`The ${tree.color} tree needs water`);
+      }
+      else {
+        console.log(`The ${tree.color} tree doesn't need water`);
+      }
     });
 
-    console.log(`Watering with ${units}`);
+    this.flowers.forEach(flower => {
+      if (flower.irrigation.plantNeedsWater) {
+        plantsThatNeedWater++;
+        console.log(`The ${flower.color} flower needs water`);
+      }
+      else {
+        console.log(`The ${flower.color} flower doesn't need water`);
+      }
+    });
+
+    console.log(`=========plants that need water: ${plantsThatNeedWater}`);
     let availableForPlant: number = (units / plantsThatNeedWater);
 
     //this waters them equally
     this.trees.forEach(tree => {
-      if (tree.needsWater) {
-        tree.waterLevel += (0.4 * availableForPlant);
+      if (tree.irrigation.plantNeedsWater) {
+        tree.irrigate(availableForPlant);
       }
     });
     this.flowers.forEach(flower => {
-      if (flower.needsWater) {
-        flower.waterLevel += (0.75 * availableForPlant);
+      if (flower.irrigation.plantNeedsWater) {
+        flower.irrigate(availableForPlant);
       }
     });
-    console.log(`Plants got ${availableForPlant} units of water each`);
   }
-
 }
