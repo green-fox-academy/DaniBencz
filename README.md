@@ -5,3 +5,6 @@
 
 **To Do App**
 <h5>https://github.com/DaniBencz/todo-app<h5>
+
+*The Wanderer*
+<h5>https://github.com/DaniBencz/wanderer-typescript<h5>
