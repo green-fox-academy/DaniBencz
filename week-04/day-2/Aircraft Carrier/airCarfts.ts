@@ -1,6 +1,6 @@
 'use strict';
 
-abstract class AirCraft {
+export abstract class AirCraft {
 
   ammunition: number;
   maxAmmo: number;
@@ -14,7 +14,7 @@ abstract class AirCraft {
   }
 
   refill(ammo: number): number {
-    let tookAmmo: number = ammo - (this.maxAmmo - this.ammunition);
+    let tookAmmo: number = (this.maxAmmo - this.ammunition);
     this.ammunition += tookAmmo;
     return ammo - tookAmmo;
   }
@@ -22,7 +22,7 @@ abstract class AirCraft {
   getType() { }
 
   getStatus(): string {
-    return `Type ${this.getType}, Ammo: ${this.ammunition}, Base Damage: ${this.baseDamage}, All Damage: ${this.doneDamage}`;
+    return `Type ${this.getType()}, Ammo: ${this.ammunition}, Base Damage: ${this.baseDamage}, All Damage: ${this.doneDamage}`;
   }
 
   isPriority() { }
@@ -35,31 +35,33 @@ export class F16 extends AirCraft {
     this.ammunition = 0;
     this.maxAmmo = 8;
     this.baseDamage = 30;
+    this.doneDamage = 0;
   }
 
-  getType(){
+  getType() {
     return 'F16';
   }
 
-  isPriority(){
+  isPriority() {
     return false;
   }
 }
 
 export class F35 extends AirCraft {
-  
+
   constructor() {
     super();
     this.ammunition = 0;
     this.maxAmmo = 12;
     this.baseDamage = 50;
+    this.doneDamage = 0;
   }
-  
-  getType(){
+
+  getType() {
     return 'F35';
   }
 
-  isPriority(){
+  isPriority() {
     return true;
   }
 }

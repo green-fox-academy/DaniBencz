@@ -1,24 +1,23 @@
 'use strict';
 
-import { F16, F35 } from './airCarfts'
+import { F16, F35, AirCraft } from './airCarfts'
 
 export class Carrier {
 
-  airCrafts: F16[];
+  airCrafts: AirCraft[];
   ammoStore: number;
   health: number;
   totalDamage: number;
 
   constructor(ammo: number) {
-    this.airCrafts;
-    this.ammoStore;
+    this.airCrafts = [];
+    this.ammoStore = ammo;
     this.health = 5000;
-    this.totalDamage;
+    this.totalDamage = 0;
   }
 
-  //oops...
-  add(aircraft?: F16, F35) {
-    this.airCrafts.push();
+  add(aircraft: AirCraft) {
+    this.airCrafts.push(aircraft);
   }
 
   fill(ammo): void {
@@ -32,9 +31,11 @@ export class Carrier {
           this.ammoStore -= ammoUsed;
         }
       });
+      ammoUsed = 0;
       this.airCrafts.forEach(aircraft => {
         if (this.ammoStore > 0) {
           aircraft.refill(ammo);
+          ammoUsed = ammo - aircraft.refill(ammo);
           this.ammoStore -= ammoUsed;
         }
       });
@@ -47,13 +48,25 @@ export class Carrier {
     }
   }
 
-  getStatus() {
-    this.totalDamage = 0;
-    this.airCrafts.forEach(aircraft =>{
+  fight() {
+    this.airCrafts.forEach(aircraft => {
+      aircraft.fight();
       this.totalDamage += aircraft.doneDamage;
+    })
+  }
+
+  getStatus() {
+    let inventoryArr: string[] = [];
+    let inventoryStr: string = '';
+    this.totalDamage = 0;
+    this.airCrafts.forEach(aircraft => {
+      this.totalDamage += aircraft.doneDamage;
+      inventoryArr.push(aircraft.getStatus());
+      inventoryStr = inventoryArr.join('\n')
     });
-    return `HP: ${this.health}, Aircraft count: ${this.airCrafts.length}, Ammo Storage: ${this.ammoStore}, Total damage ${this.totalDamage}` + `Aircraft:
-    ${this.airCrafts}`;
+
+    return `HP: ${this.health}, Aircraft count: ${this.airCrafts.length}, Ammo Storage: ${this.ammoStore}, Total damage ${this.totalDamage}, Aircraft:
+${inventoryStr}`;
   }
 }
 
