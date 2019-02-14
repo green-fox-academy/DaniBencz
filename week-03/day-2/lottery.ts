@@ -3,26 +3,37 @@
 let fs = require('fs');
 
 function mostCommon(fileName) {
-
-  let newString = fs.readFileSync(fileName, 'utf-8');
-  let lines: string[] = [];
+  let lines = fs.readFileSync(fileName, 'utf-8').split('\r\n');
   let numbers: number[] = [];
-
-  lines = newString.split('\r\n');
-
   lines.forEach(line => {
-
     let lineArray: string[] = line.split(';');
-    //let deleteIndex: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     for (let i: number = 10; i >= 0; i--) {
       lineArray.splice(i, 1);
     }
     lineArray.forEach(number => {
       numbers.push(Number(number));
     })
-    //console.log(lineArray);
   })
-  console.log(numbers);
+  //console.log(numbers);
+
+  let counts: {} = {};
+  let compare: number = 0;
+  let mostFrequent: number;
+
+  numbers.forEach((number, index) => {
+
+    if (counts[number] === undefined) {
+      counts[number] = 1;
+    } else {
+      counts[number]++;
+    }
+
+    if (counts[number] > compare) {
+      compare = counts[number];
+      mostFrequent = numbers[index];
+    }
+  })
+  console.log('most popular number is: ' + mostFrequent);
 }
 
-mostCommon('lottery2.csv');
+mostCommon('lottery.csv');
