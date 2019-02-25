@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 500px;
+  background: lightgray;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+
+.item {
+  height: 20px;
+  width: 400px;
+}
+
+.green {
+  background: green;
+  flex-grow: 1;
+  order: 0;
+}
+
+.yellow {
+  background: yellow;
+  flex-grow: 2;
+  order: 2;
+}
+
+.purple {
+  background: purple;
+  flex-grow: 1;
+  order: 1;
+}

@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 500px;
+  background: lightgray;
+  justify-content: center;
+  align-items: center;
+}
+
+.item {
+  height: 100px;
+  /* width: 100px; */
+}
+
+.green {
+  background: green;
+  flex-grow: 1;
+}
+
+.yellow {
+  background: yellow;
+  flex-grow: 2;
+}
+
+.purple {
+  background: purple;
+  flex-grow: 1;
+}
