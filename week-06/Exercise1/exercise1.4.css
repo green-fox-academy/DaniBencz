@@ -18,19 +18,19 @@ body {
 }
 
 .green {
-  background: green;
+  background: rgb(81, 212, 0);
   flex-grow: 1;
   order: 0;
 }
 
 .yellow {
-  background: yellow;
+  background: rgb(255, 214, 42);
   flex-grow: 2;
   order: 2;
 }
 
 .purple {
-  background: purple;
+  background: rgb(176, 42, 255);
   flex-grow: 1;
   order: 1;
 }
