@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  margin: 20px;
+  display: flex;
+  height: 500px;
+  width: 900px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+p {
+  text-align: right;
+}
+
+.header {
+  background: rgb(176, 42, 255);
+  height: 50px;
+  width: 900px;
+  display: flex;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.box {
+  background: rgb(42, 234, 255);
+  height: 30px;
+  width: 100px;
+  margin: 5px;
+}
+
+.main {
+  background: rgb(255, 214, 42);
+  width: 600px;
+  height: 100%;
+}
+
+.menu {
+  background: rgb(81, 212, 0);
+  width: 300px;
+  height: 100%;
+}
