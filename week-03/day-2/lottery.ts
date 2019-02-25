@@ -14,12 +14,19 @@ function mostCommon(fileName) {
       numbers.push(Number(number));
     })
   })
-  //console.log(numbers);
 
+  let mostFrequent1: number;
+  let mostFrequent2: number;
+  let mostFrequent3: number;
+  let mostFrequent4: number;
+  let mostFrequent5: number;
   let counts: {} = {};
-  let compare: number = 0;
-  let mostFrequent: number;
-
+  let compare1: number = 5;
+  let compare2: number = 4;
+  let compare3: number = 3;
+  let compare4: number = 2;
+  let compare5: number = 1;
+  
   numbers.forEach((number, index) => {
 
     if (counts[number] === undefined) {
@@ -27,11 +34,10 @@ function mostCommon(fileName) {
     } else {
       counts[number]++;
     }
-
-    if (counts[number] > compare) {
-      compare = counts[number];
-      mostFrequent = numbers[index];
-    }
+    if (counts[number] > compare1) {
+      compare1 = counts[number];
+      mostFrequent5 = numbers[index];
+    } 
   })
   console.log('most popular number is: ' + mostFrequent);
 }

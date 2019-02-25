@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 500px;
+  background: lightgray;
+  justify-content: center;
+  align-items: center;
+}
+
+.item {
+  width: 100px;
+  height: 100px;
+}
+
+.green {
+  background: green;
+}
+
+.yellow {
+  background: yellow;
+}
+
+.purple {
+  background: purple;
+}
