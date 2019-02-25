@@ -4,7 +4,7 @@ body {
 
 .container {
   display: flex;
-  width: 100%;
+  width: 500px;
   height: 500px;
   background: lightgray;
   justify-content: center;
