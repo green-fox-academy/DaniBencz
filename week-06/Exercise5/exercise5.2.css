@@ -1,15 +1,12 @@
 body {
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
 }
 
 .container {
   display: flex;
   flex-direction: column;
   height: 700px;
-  width: 500px;
 }
 
 header {
