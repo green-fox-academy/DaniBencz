@@ -10,10 +10,10 @@ console.log(books);
 
 //Print all the key-value pairs in the following format
 //A Letter to Jo (ISBN: 978-1-60309-452-8)
-//----------------------won't run :( 
-/* for (let i: number = 0; i < Object.keys(books).length; i++) {
+
+for (let i: number = 0; i < Object.keys(books).length; i++) {
   console.log(`${Object.values(books)[i]} (ISBN: ${Object.keys(books)[i]})`);
-} */
+}
 
 //Remove the key-value pair with key 978-1-60309-444-3
 delete books['978-1-60309-444-3'];
