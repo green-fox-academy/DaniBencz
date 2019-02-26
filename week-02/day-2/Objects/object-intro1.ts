@@ -15,7 +15,9 @@ object1[66] = "B";
 object1[67] = "C";
 
 
-//Print all the values(error)
+//Print all the values
+//Need this to be able to run .values
+//https://github.com/Microsoft/TypeScript/issues/28166
 console.log(Object.values(object1));
 
 //Add value D with the key 68
