@@ -1,7 +1,5 @@
 'use strict';
 
-console.log('foo');
-
 //Add an item that says 'The Green Fox' to the asteroid list.
 var greenFox = document.createElement('li');
 greenFox.innerText = 'The Green Fox';
