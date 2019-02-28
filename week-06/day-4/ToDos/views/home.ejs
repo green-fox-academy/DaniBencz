@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Greetings!</title>
+</head>
+
+<body>
+  <h1>Things to do Today:</h1>
+
+  <ul>
+  <%# no '=' in front of the JS code, only before values %>
+    <%for(let i= 0; i < todos.length; i++){%>
+      <li><%=todos[i]%></li>
+    <%}%>
+  </ul>
+</body>
+
+</html>
