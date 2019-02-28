@@ -19,8 +19,9 @@ testing_other/
 Untitled*.ts
 practise*.ts
 MatRV/
-node_modules/
 package-lock.json
 package.json
 delete*.*
-.gitignore
+NetNinja/
+MR-Server/
+node_modules/
