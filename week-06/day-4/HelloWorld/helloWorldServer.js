@@ -12,9 +12,16 @@ app.set('view engine', 'ejs');
 app.get('/', (req, res) => {
   // render `home.ejs`
   res.render('home', {
-    title: 'Hello World'
+    //have a middleware!! - see below
+    image: 'assets/yawn.jpg',
+    title: 'Hello World!',
+    name: 'Astral',
+    day: 4
   });
 });
+
+//middleware is ure friend!
+app.use('/assets', express.static('assets'));
 
 // start express app on port 3000
 app.listen(PORT, () => {
