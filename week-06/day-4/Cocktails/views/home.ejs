@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>Cocktails</title>
+  <link rel="stylesheet" href="/static/style.css" type="text/css">
 </head>
 
 <body>
@@ -12,7 +13,7 @@
   <ul>
   <%# no '=' in front of the JS code, only before values %>
     <%for(let i= 0; i < cocktails.length; i++){%>
-      <li><%=cocktails[i]%></li>
+      <li><%=`${cocktails[i].name} ${cocktails[i].price}`%></li>
     <%}%>
   </ul>
 </body>

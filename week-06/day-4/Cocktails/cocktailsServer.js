@@ -20,12 +20,13 @@ const cocktails = [
 const alcoholList = ['gin', 'vodka', 'rum', 'tequila'];
 
 app.get('/', (req, res) => {
-  //passing the todos array to the template
   res.render('home', {
     cocktails,
     alcoholList
   });
 });
+
+app.use('/static', express.static('static'));
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
