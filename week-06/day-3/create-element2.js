@@ -35,6 +35,9 @@ const planetData = [
 ];
 
 //Fill the list based on the following list of objects.
+//Only add the asteroids to the list.
+//Each list item should have its category as a class and its content as text content.
+
 function adder(category, content) {
   var newItem = document.createElement('li');
   newItem.className = category;
@@ -45,10 +48,7 @@ function adder(category, content) {
 var parent = document.querySelector('.asteroids');
 
 for (var i = 0; i < planetData.length; i++) {
-  parent.appendChild(adder(planetData[i].category, planetData[i].content));
+  if (planetData[i].asteroid) {
+    parent.appendChild(adder(planetData[i].category, planetData[i].content));
+  }
 }
-
-//Only add the asteroids to the list.
-
-
-//Each list item should have its category as a class and its content as text content.
