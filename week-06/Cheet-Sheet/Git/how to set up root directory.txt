@@ -1,0 +1,10 @@
+If you want to change root directory on windows, go to
+
+Control Panel
+/System/Advanced system settings/Advanced/Environment Variables
+
+
+
+Than
+
+ add a new variable called "HOME" and give your preferred path to it.

@@ -1,0 +1,16 @@
+MYSQL for VSCode
+
+- install MySQL plugin for VSC
+- in the Explorer (left upper corner) hit '+' at MySQL
+- if error message encountered:
+	- open MySQL Command Line
+	- run: ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'
+	- in VSC: right click MySQL, hit 'refresh'
+
+- create 'localhost', fill in username, password, accept the rest
+- right click on 'localhost', 'New Query'
+- use it like regular terminal
+	to execute, right click in editor: Run Query
+	Results show up in right panel
+
+*
