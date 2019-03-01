@@ -1,6 +1,7 @@
 'use strict';
 
 const kids = [
+  { 'petName': 'Malacka', 'owner': 'Sari' },
   { 'petName': 'Wattled crane', 'owner': 'Bryant' },
   { 'petName': 'Devil, tasmanian', 'owner': 'Alejandro' },
   { 'petName': 'Mynah, common', 'owner': 'Nelie' },
