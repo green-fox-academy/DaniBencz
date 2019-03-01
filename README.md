@@ -8,3 +8,7 @@
 
 *The Wanderer*
 <h5>https://github.com/DaniBencz/wanderer-typescript<h5>
+
+image-slider
+<h5>https://github.com/DaniBencz/image-slider<h5>
+  
