@@ -1,8 +1,0 @@
-
-Bash commands to install TypeScript
-
-npm install -g typescript
-npm install -g ts-node
-
-
-*

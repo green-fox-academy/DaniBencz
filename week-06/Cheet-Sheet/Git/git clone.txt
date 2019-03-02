@@ -1,9 +1,0 @@
-
-Git Clone:
-
-1, Fork
-2, Hit Clone Botton
-3, Find link to clone, copy it
-4, Find 'Git-Free' folder, start terminal on it
-5, Write 'git clone' + the url
-:D

@@ -1,4 +1,0 @@
-
-A static method is a method declared within a class, but one does not need to instentiate an instance in orther to be able to use it.
-
-*
