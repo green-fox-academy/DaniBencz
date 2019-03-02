@@ -36,7 +36,7 @@ console.log('two new entries added');
 console.log(books);
 
 //Print whether there is an associated value with key 478-0-61159-424-8 or not
-
-console.log()
+console.log(`key '478-0-61159-424-8' has associated value: ${books[478-0-61159-424-8]!=undefined}`);
 
 //Print the value associated with key 978-1-60309-453-5
+console.log(`key '978-1-60309-453-5' has value: '${books['978-1-60309-453-5']}'`);
