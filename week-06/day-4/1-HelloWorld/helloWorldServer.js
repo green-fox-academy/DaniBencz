@@ -11,8 +11,9 @@ app.set('view engine', 'ejs');
 // home page
 app.get('/', (req, res) => {
   // render `home.ejs`
+  //instead of sending an .html file, we render and .ejs
   res.render('home', {
-    //have a middleware!! - see below
+    //if you have static files, have a middleware(below)!
     image: 'assets/yawn.jpg',
     title: 'Hello World!',
     name: 'Astral',
@@ -20,7 +21,7 @@ app.get('/', (req, res) => {
   });
 });
 
-//middleware is ure friend!
+//middleware!
 app.use('/assets', express.static('assets'));
 
 // start express app on port 3000

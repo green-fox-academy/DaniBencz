@@ -11,6 +11,7 @@ app.get('/', (req, res) => {
 
 app.use('/assets', express.static('assets'));
 
+//e.g. doubling?input=15 should return 30
 app.get('/doubling', (req, res) => {
   let input = req.query;
   console.log(input);
@@ -26,6 +27,7 @@ app.get('/doubling', (req, res) => {
   }
 });
 
+//e.g. greeter?name=Petike&title=student should return "Oh, hi there Petike, my dear student!"
 app.get('/greeter', (req, res) => {
   let input = req.query;
   if (input.name && input.title) {
@@ -47,6 +49,7 @@ app.get('/greeter', (req, res) => {
   }
 });
 
+//e.g. /appenda/kuty should return kutya
 app.get('/appenda/:appendable', (req, res) => {
   if (req.params) {
     res.json({
@@ -60,8 +63,9 @@ app.get('/appenda/:appendable', (req, res) => {
 //middleware to parse .json type payload (request with data in it)
 app.use(express.json());
 
-//a GET request doesn't have a body, whil the POST has
+//e.g. /dountil/sum:5 should return 15, /dountil/factor:5 should return 120
 app.post('/dountil/:action', (req, res) => {
+  //a GET request doesn't have a body, whil the POST has
   let until = req.body.until;
   let transf = req.params.action;
   if (transf) {
@@ -70,7 +74,6 @@ app.post('/dountil/:action', (req, res) => {
       let count = 1;
       for (let i = 2; i <= until; i++) {
         count = count * i;
-        console.log(count);
       }
       res.json({
         "result": count
