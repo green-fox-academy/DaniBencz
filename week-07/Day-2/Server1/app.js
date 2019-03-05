@@ -57,7 +57,43 @@ app.get('/appenda/:appendable', (req, res) => {
   }
 });
 
+//middleware to parse .json type payload (request with data in it)
+app.use(express.json());
 
+//a GET request doesn't have a body, whil the POST has
+app.post('/dountil/:action', (req, res) => {
+  let until = req.body.until;
+  let transf = req.params.action;
+  if (transf) {
+    //factor
+    if (transf === 'factor') {
+      let count = 1;
+      for (let i = 2; i <= until; i++) {
+        count = count * i;
+        console.log(count);
+      }
+      res.json({
+        "result": count
+      });
+    }
+
+    //summation
+    else {
+      let count = 1;
+      for (let i = 2; i <= until; i++) {
+        count += i;
+      }
+      res.json({
+        "result": count
+      });
+    }
+  } 
+  else {
+    res.json({
+      "error": "Please provide a number!"
+    });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`server is running at ${PORT}`);
