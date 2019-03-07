@@ -31,10 +31,21 @@ const conn = mysql.createConnection({
 });  */
 //conn.end();
 
-
-app.get('/author', (req, res) => {
-
+app.get('/authors', (req, res) => {
   conn.query('SELECT * FROM author;', (err, rows) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send();
+      return;
+    }
+    res.send(rows);
+    console.log(rows);
+  });
+});
+
+app.get('/books', (req, res) => {
+
+  conn.query('SELECT * FROM book_mast;', (err, rows) => {
     if (err) {
       console.error(err);
       res.status(500).send();
