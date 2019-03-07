@@ -13,8 +13,6 @@ http.onload = () => {
 }
 
 function renderHTML(data) {
-  console.log('foo');
-  console.log(data.data[0].images.downsized.url);
   for (let i = 0; i < data.data.length; i++) {
     //create new <img>
     let img = document.createElement('img');

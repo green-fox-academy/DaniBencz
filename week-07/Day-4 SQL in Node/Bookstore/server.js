@@ -5,7 +5,14 @@ const express = require('express');
 const mysql = require('mysql');
 const app = express();
 const PORT = 3000;
-app.use(express.json());
+const path = require('path');
+
+app.get('/', (req, res) => {
+  //endpoint with its path
+  res.sendFile(path.join(__dirname, './assets/bookstore.html'));
+});
+
+app.use('/assets', express.static('assets'));
 
 const conn = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -26,18 +33,14 @@ const conn = mysql.createConnection({
 
 
 app.get('/author', (req, res) => {
+
   conn.query('SELECT * FROM author;', (err, rows) => {
     if (err) {
       console.error(err);
       res.status(500).send();
       return;
     }
-    let myString = '';
-    rows.forEach(row => {
-      myString = myString.concat(`${row.aut_name} is from ${row.home_city}\n`);
-    });
-
-    res.send(myString);
+    res.send(rows);
     //console.log(rows);
   });
 });
