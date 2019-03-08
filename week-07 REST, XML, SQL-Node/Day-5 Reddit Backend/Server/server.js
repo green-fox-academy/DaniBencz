@@ -18,10 +18,10 @@ const conn = mysql.createConnection({
 
 app.use(express.json());
 
+//posting
 app.post('/json', (req, res) => {
   //setting response type
   res.set('Content-type', 'application/json');
-  //need to clarify this !!!!
   if (req.get('Content-type') === 'application/json') {
     let title = req.body.title;
     let url = req.body.url;
@@ -47,6 +47,26 @@ app.post('/json', (req, res) => {
         }
         res.status(200).json(rows);
       });
+    });
+  } else {
+    res.send('Invalid format!');
+  };
+});
+
+//voting
+app.put('/posts/:id/upvote', (req, res) => {
+  res.set('Content-type', 'application/json');
+  if (req.get('Content-type') === 'application/json') {
+    let id = req.params.id;
+    console.log(id);
+    let SQL = `UPDATE post SET score=score+1 WHERE id=${id};`;
+    conn.query(SQL, (err, rows) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send();
+        return;
+      }
+      res.status(200).json(rows);
     });
   } else {
     res.send('Invalid format!');
