@@ -1,8 +1,12 @@
+'use strict';
+
 const express = require('express');
 const app = express();
 const PORT = 8080;
 //set path
 const path = require('path');
+
+// = = = First Rest Server = = =
 
 app.get('/', (req, res) => {
   //endpoint with its path

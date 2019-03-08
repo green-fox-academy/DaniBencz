@@ -1,11 +1,12 @@
 'use strict';
-
 require('dotenv').config();
-const express = require('express');
 const mysql = require('mysql');
+const express = require('express');
 const app = express();
 const PORT = 3000;
 const path = require('path');
+
+// = = = Bookstore Server = = =
 
 app.get('/', (req, res) => {
   //endpoint with its path
@@ -21,16 +22,6 @@ const conn = mysql.createConnection({
   database: process.env.DB_DATABASE
 });
 
-/* conn.connect((err) => {
-  if (err) {
-    console.log('Error connecting to DB');
-    console.error();
-    return;
-  }
-  console.log('DB is connected');
-});  */
-//conn.end();
-
 app.get('/authors', (req, res) => {
   conn.query('SELECT * FROM author;', (err, rows) => {
     if (err) {
@@ -39,21 +30,32 @@ app.get('/authors', (req, res) => {
       return;
     }
     res.send(rows);
-    console.log(rows);
   });
 });
 
 app.get('/books', (req, res) => {
-
-  conn.query('SELECT * FROM book_mast;', (err, rows) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send();
-      return;
-    }
-    res.send(rows);
-    //console.log(rows);
-  });
+  let input = req.query;
+  if (input.category === 'Science') {
+    console.log(input.category);
+    conn.query(`SELECT * FROM book_mast WHERE cate_id = 'CA001';`, (err, rows) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send();
+        return;
+      }
+      res.send(rows);
+    });
+  }
+  else {
+    conn.query('SELECT * FROM book_mast;', (err, rows) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send();
+        return;
+      }
+      res.send(rows);
+    });
+  }
 });
 
 app.listen(PORT, () => {

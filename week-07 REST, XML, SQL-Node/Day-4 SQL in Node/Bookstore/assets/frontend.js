@@ -27,6 +27,7 @@ let books = document.getElementById('books');
 books.onclick = () => {
   http.open('GET', 'http://localhost:3000/books', true);
   http.onload = (data) => {
+    console.log(data);
     let myArray = JSON.parse(http.responseText);
     ul.innerHTML = null;
     myArray.forEach(row => {
@@ -36,4 +37,4 @@ books.onclick = () => {
     });
   };
   http.send();
-}
+};

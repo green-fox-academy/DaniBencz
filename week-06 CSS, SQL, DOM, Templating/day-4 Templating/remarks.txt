@@ -1,2 +1,0 @@
-Changed each projects' main js file name to the name of the actual project.
-Might affect running! In this case, sync it with name defined in .json file as "main".
