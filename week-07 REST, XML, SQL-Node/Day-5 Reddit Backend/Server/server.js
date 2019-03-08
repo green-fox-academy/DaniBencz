@@ -18,12 +18,12 @@ const conn = mysql.createConnection({
 
 app.get('/hello', (req, res) => {
 
-  res.send('Hello World!');
+  res.send('<h1>Hello World!</h1>');
 });
 
 
-/* app.get('/authors', (req, res) => {
-  conn.query('SELECT * FROM author;', (err, rows) => {
+app.get('/posts', (req, res) => {
+  conn.query('SELECT * FROM post;', (err, rows) => {
     if (err) {
       console.error(err);
       res.status(500).send();
@@ -31,7 +31,7 @@ app.get('/hello', (req, res) => {
     }
     res.send(rows);
   });
-}); */
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running at ${PORT}`);
