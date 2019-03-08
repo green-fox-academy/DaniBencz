@@ -16,11 +16,38 @@ const conn = mysql.createConnection({
 
 // = = = "Reddit" Backend Server = = =
 
-app.get('/hello', (req, res) => {
+app.use(express.json());
 
-  res.send('<h1>Hello World!</h1>');
+app.post('/json', (req, res) => {
+  //setting response type
+  res.set('Content-type', 'application/json');
+  let title = req.body.title;
+  let url = req.body.url;
+  //check this before!!!!!!
+  let owner = req.header.owner;
+
+  conn.query(`SELECT * FROM post WHERE title='${title}' AND url='${url}';`, (err, rows) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send();
+      return;
+    }
+    res.status(200).json(rows);
+  });
+
 });
 
+
+app.get('/owner', (req, res) => {
+  conn.query('SELECT * FROM owner;', (err, rows) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send();
+      return;
+    }
+    res.status(200).json(rows);
+  });
+});
 
 app.get('/posts', (req, res) => {
   conn.query('SELECT * FROM post;', (err, rows) => {
@@ -29,7 +56,7 @@ app.get('/posts', (req, res) => {
       res.status(500).send();
       return;
     }
-    res.send(rows);
+    res.status(200).json(rows);
   });
 });
 
