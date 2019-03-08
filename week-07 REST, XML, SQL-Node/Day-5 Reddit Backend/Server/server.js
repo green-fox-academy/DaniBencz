@@ -21,24 +21,40 @@ app.use(express.json());
 app.post('/json', (req, res) => {
   //setting response type
   res.set('Content-type', 'application/json');
-  let title = req.body.title;
-  let url = req.body.url;
-  //check this before!!!!!!
-  let owner = req.header.owner;
+  //need to clarify this !!!!
+  if (req.get('Content-type') === 'application/json') {
+    let title = req.body.title;
+    let url = req.body.url;
+    //check this before!!!!!!
+    let owner = req.body.owner;
 
-  conn.query(`SELECT * FROM post WHERE title='${title}' AND url='${url}';`, (err, rows) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send();
-      return;
-    }
-    res.status(200).json(rows);
-  });
+    let SQL = `INSERT INTO post (title, url, owner_id) VALUES ('${title}', '${url}', ${owner});`;
 
+    conn.query(SQL, (err, rows) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send();
+        return;
+      }
+
+      SQL = `SELECT * FROM post WHERE title='${title}' AND url='${url}' AND owner_id=${owner};`;
+
+      conn.query(SQL, (err, rows) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send();
+          return;
+        }
+        res.status(200).json(rows);
+      });
+    });
+  } else {
+    res.send('Invalid format!');
+  };
 });
 
-
 app.get('/owner', (req, res) => {
+  res.set('Content-type', 'application/json');
   conn.query('SELECT * FROM owner;', (err, rows) => {
     if (err) {
       console.error(err);
@@ -50,6 +66,7 @@ app.get('/owner', (req, res) => {
 });
 
 app.get('/posts', (req, res) => {
+  res.set('Content-type', 'application/json');
   conn.query('SELECT * FROM post;', (err, rows) => {
     if (err) {
       console.error(err);
