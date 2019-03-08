@@ -5,7 +5,6 @@ const mysql = require('mysql');
 const express = require('express');
 const app = express();
 const PORT = 3000;
-//const path = require('path');
 
 const conn = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -25,9 +24,8 @@ app.post('/json', (req, res) => {
   if (req.get('Content-type') === 'application/json') {
     let title = req.body.title;
     let url = req.body.url;
-    //check this before!!!!!!
+    //=========== this needs better implementation
     let owner = req.body.owner;
-
     let SQL = `INSERT INTO post (title, url, owner_id) VALUES ('${title}', '${url}', ${owner});`;
 
     conn.query(SQL, (err, rows) => {
@@ -38,7 +36,6 @@ app.post('/json', (req, res) => {
       }
 
       SQL = `SELECT * FROM post WHERE title='${title}' AND url='${url}' AND owner_id=${owner};`;
-
       conn.query(SQL, (err, rows) => {
         if (err) {
           console.error(err);
@@ -53,7 +50,7 @@ app.post('/json', (req, res) => {
   };
 });
 
-//voting
+//upvoting
 app.put('/posts/:id/upvote', (req, res) => {
   res.set('Content-type', 'application/json');
   if (req.get('Content-type') === 'application/json') {
@@ -73,6 +70,27 @@ app.put('/posts/:id/upvote', (req, res) => {
   };
 });
 
+//downvoting
+app.put('/posts/:id/downvote', (req, res) => {
+  res.set('Content-type', 'application/json');
+  if (req.get('Content-type') === 'application/json') {
+    let id = req.params.id;
+    console.log(id);
+    let SQL = `UPDATE post SET score=score-1 WHERE id=${id};`;
+    conn.query(SQL, (err, rows) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send();
+        return;
+      }
+      res.status(200).json(rows);
+    });
+  } else {
+    res.send('Invalid format!');
+  };
+});
+
+//query users
 app.get('/owner', (req, res) => {
   res.set('Content-type', 'application/json');
   conn.query('SELECT * FROM owner;', (err, rows) => {
@@ -85,6 +103,7 @@ app.get('/owner', (req, res) => {
   });
 });
 
+//query posts
 app.get('/posts', (req, res) => {
   res.set('Content-type', 'application/json');
   conn.query('SELECT * FROM post;', (err, rows) => {
