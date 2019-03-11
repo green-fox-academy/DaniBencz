@@ -6,6 +6,6 @@
 
 const text = document.querySelector('h1');
 const keyup = (e) => {
-  text.textContent = e.code;
+  text.textContent = `Last pressed key code is: ${e.key} ${e.key.charCodeAt(0)}`;
 };
 document.addEventListener('keyup', keyup);
