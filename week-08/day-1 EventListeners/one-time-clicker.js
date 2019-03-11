@@ -7,9 +7,9 @@
 
 const body = document.querySelector('body');
 const button = document.querySelector('button');
-let clicked = false;
 
-/* const click = (e) => {
+/*let clicked = false;
+const click = (e) => {
   if (clicked === false) {
     console.log(e.timeStamp);
     clicked = true;

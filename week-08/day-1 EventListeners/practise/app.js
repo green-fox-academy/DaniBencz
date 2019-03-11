@@ -16,15 +16,15 @@ document.addEventListener['DOMContentLoaded', function () {
   });
 
   //a better way, using bubbling
-  const elementList2 = document.querySelector('paren-element');
-  elementList2.addEventListener('click', function (e) {
+  const parent = document.querySelector('parent-elemen');
+  parent.addEventListener('click', function (e) {
     //specifying the scope of the click event
     if (e.target.className === 'ourClass') {
       const child2 = e.target.parentElement;
       //remove its parents' child (that is, itself)
       child2.parentNode.removeChild(child2);
       //or same thing
-      elementList2.removeChild(child2);
+      parent.removeChild(child2);
     }
   });
 
