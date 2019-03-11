@@ -5,20 +5,23 @@
 //Try to solve this two different ways.
 //hint: take a look at the button attributes https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button
 
-const body = document.querySelector('body');
 const button = document.querySelector('button');
+//let clicked = false;
 
-/*let clicked = false;
-const click = (e) => {
-  if (clicked === false) {
+let click = (e) => {
+  
+  //option 1
+  /*if (!clicked) {
     console.log(e.timeStamp);
     clicked = true;
-  }
-}; */
-
-const click = (e) => {
+  } */
+  
   console.log(e.timeStamp);
-  button.setAttribute('disabled','');
+  //option 2
+  //button.setAttribute('disabled','');
+  
+  //option3
+  button.removeEventListener('click', click);
 };
 
-document.addEventListener('click', click);
+button.addEventListener('click', click);
