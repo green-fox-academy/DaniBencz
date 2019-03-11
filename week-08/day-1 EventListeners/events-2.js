@@ -8,11 +8,9 @@ const result = document.querySelector('.result');
 const list = document.querySelectorAll('li');
 
 const countElements = () => {
-  let answer = 0;
-  list.forEach(li => {
-    answer++;
-  });
-  result.textContent = answer;
+  for (let i = 1; i <= list.length; i++) {
+    result.textContent = i;
+  };
 };
 button.addEventListener('click', countElements);
 
