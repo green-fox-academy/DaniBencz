@@ -69,7 +69,7 @@ app.use(express.json());
 
 //e.g. /dountil/sum:5 should return 15, /dountil/factor:5 should return 120
 app.post('/dountil/:action', (req, res) => {
-  //a GET request doesn't have a body, whil the POST has
+  //a GET request doesn't have a body, while the POST has
   let until = req.body.until;
   let transf = req.params.action;
   if (transf) {
