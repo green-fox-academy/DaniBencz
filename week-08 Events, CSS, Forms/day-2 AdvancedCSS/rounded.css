@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  background: rgb(47, 48, 96);
+  width: 100vw;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+button {
+  border: 0;
+  margin: 10px;
+  height: 50px;
+  width: 100px;
+  border-radius: 5px;
+  color: whitesmoke;
+}
+
+#blue {
+  background: rgb(67, 97, 161);
+}
+
+#green {
+  background: rgb(25, 166, 83);
+}
+
+#red {
+  background: rgb(213, 69, 53);
+}
+
+#light {
+  background: rgb(0, 174, 238);
+}
+
+#black {
+  background: rgb(38, 40, 42);
+}
+
+#white {
+  background: rgb(232, 236, 246);
+}

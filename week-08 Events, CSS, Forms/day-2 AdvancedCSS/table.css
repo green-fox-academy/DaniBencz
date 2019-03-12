@@ -1,0 +1,62 @@
+body {
+  background: #3E94EC;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+table {
+  margin: 25px;
+  display: flex;
+  background: rgb(235, 235, 235);
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border-collapse: collapse;
+}
+
+/* overall size */
+th, td {
+  width: 300px;
+  padding: 15px;
+}
+
+/* heading */
+th {
+  color: lightgrey;
+  background: #1B1E24;
+}
+
+/* heading central border-line */
+th:nth-child(1) {
+  border-radius: 5px 0 0 0;
+  border-right: solid 2px rgb(158, 167, 175);
+}
+
+/* rounding upper-right corner */
+th:nth-child(2) {
+  border-radius: 0 5px 0 0;
+}
+
+/* main central border-line */
+td:nth-child(1) {
+  border-right: solid 2px rgb(158, 167, 175);
+}
+
+/* write $ sign */
+td:nth-child(2)::before {
+  content: '$ ';
+}
+
+td {
+  border-top: solid 2px rgb(158, 167, 175);
+  border-spacing: 0;
+  color: rgb(105, 108, 135);
+}
+
+/* alternating colors */
+tr:nth-child(odd) {
+  background: white;
+}
