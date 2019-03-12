@@ -4,10 +4,12 @@ body {
 }
 
 .container {
+  padding: 30px;
   display: flex;
   background: rgb(47, 48, 96);
-  width: 100vw;
-  height: 300px;
+  /* paading adds to width */
+  width: 100%-60px;
+  /* pre-defined height would spread out wrapped elements */
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
@@ -16,22 +18,49 @@ body {
 button {
   border: 0;
   margin: 10px;
-  height: 50px;
+  height: 40px;
   width: 100px;
   border-radius: 5px;
-  color: whitesmoke;
+  color: rgb(205, 230, 225);
 }
 
 #blue {
   background: rgb(67, 97, 161);
+  box-shadow: 0 2px rgb(40, 70, 135);
+}
+
+#blue:hover {
+  filter: brightness(1.1);
+}
+
+#blue:active {
+  filter: brightness(0.9);
 }
 
 #green {
   background: rgb(25, 166, 83);
+  box-shadow: 0 2px rgb(0, 140, 60);
+}
+
+#green:hover {
+  filter: brightness(1.1);
+}
+
+#green:active {
+  filter: brightness(0.9);
 }
 
 #red {
   background: rgb(213, 69, 53);
+  box-shadow: 0 2px rgb(190, 45, 30);
+}
+
+#red:hover {
+  filter: brightness(1.1);
+}
+
+#red:active {
+  filter: brightness(0.9);
 }
 
 #light {
