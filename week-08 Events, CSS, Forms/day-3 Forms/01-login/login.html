@@ -20,19 +20,39 @@
       border-radius: 5px;
     }
 
-    h2{
+    h2 {
       margin-top: 0;
     }
 
-    label{
+    label {
       margin: 5px;
     }
 
-    input {
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    img {
+      height: 20px;
+      width: 30px;
+      position: relative;
+      left: 160px;
+      bottom: 30px;
+    }
+
+    #user {
       display: block;
+    }
+
+    input {
+      border-radius: 5px;
       margin: 5px;
       padding: 5px;
-      border-radius: 5px;
+    }
+
+    #submit {
+      width: 70px;
     }
   </style>
 </head>
@@ -40,20 +60,29 @@
 <body>
   <div class="container">
     <h2>ACCOUNT LOGIN</h1>
-    <form action="" method="POST">
-      <label for="user">USERNAME</label>
-      <input type="text" id="user" name="username">
-      <label for="password">PASSWORD</label>
-      <input type="password" id="password" name="password">
-      <br>
-      <input type="submit" id="submit" value="Login">
-    </form>
+      <form action="" method="POST">
+        <label for="user">USERNAME</label>
+        <input type="text" id="user" name="username">
+        <label for="password">PASSWORD</label>
+        <input type="text" id="pwtext" name="password">
+        <img src="./open-eye2.png" id="img">
+        <br>
+        <input type="submit" id="submit" value="Login">
+      </form>
   </div>
   <script>
-    let password = document.getElementById('password');
-
-
-
+    let img = document.getElementById('img');
+    let pwtext = document.getElementById('pwtext');
+    let click = (e) => {
+      if (pwtext.type === 'text') {
+        e.target.src = './shut-eye2.png';
+        pwtext.type = 'password';
+      } else {
+        e.target.src = './open-eye2.png';
+        pwtext.type = 'text';
+      }
+    }
+    img.addEventListener('click', click);
     let login = document.getElementById('submit');
     let prevent = (e) => {
       e.preventDefault();
