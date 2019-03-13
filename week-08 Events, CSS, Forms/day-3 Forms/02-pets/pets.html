@@ -5,38 +5,62 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    body {
+      margin: 0;
+      padding: 0;
+     /*  display: flex;
+      justify-content: center;
+      align-items: center; */
+      background-image: url('./PETLEXA.jpg');
+      background-repeat: no-repeat;
+    }
 
+    .container {
+      position: relative;
+      left: 370px;
+      margin: 50px;
+      width: 200px;
+      background: lightgoldenrodyellow;
+      padding: 30px;
+      border-radius: 5px;
+    }
+
+    h1{
+      margin-top: 0px;
+    }
   </style>
   <title>Petses</title>
 </head>
 
 <body>
-  <h1>Petses</h1>
-  <p>What is your favourite pet?</p>
-  <form action="url" method="POST">
-    <div>
-      <input type="radio" name="pets" id="dog" value="dog">
-      <label for="dog">Dog</label>
-    </div>
-    <div>
-      <input type="radio" name="pets" id="cat" value="cat">
-      <label for="cat">Cat</label>
-    </div>
-    <div>
-      <input type="radio" name="pets" id="fish" value="fish">
-      <label for="fish">Viktor the goldfish</label>
-    </div>
-    <p>Do you want to sign up for cat facts?</p>
-    <input type="radio" name="wanna" id="yes">
-    <label for="yes">Yes</label>
-    <input type="radio" name="wanna" id="no">
-    <label for="no">No</label>
-    <div>
-      <br>
-      <input type="button" id="catBtn" disabled value="I love catses">
-      <input type="button" id="signupBtn" disabled value="Sign up">
-    </div>
-  </form>
+  <div class="container">
+    <h1>Petses</h1>
+    <p>What is your favourite pet?</p>
+    <form action="url" method="POST">
+      <div>
+        <input type="radio" name="pets" id="dog" value="dog">
+        <label for="dog">Dog</label>
+      </div>
+      <div>
+        <input type="radio" name="pets" id="cat" value="cat">
+        <label for="cat">Cat</label>
+      </div>
+      <div>
+        <input type="radio" name="pets" id="fish" value="fish">
+        <label for="fish">Viktor the goldfish</label>
+      </div>
+      <p>Do you want to sign up for cat facts?</p>
+      <input type="radio" name="wanna" id="yes" value="yes">
+      <label for="yes">Yes</label>
+      <input type="radio" name="wanna" id="no" value="no">
+      <label for="no">No</label>
+      <div>
+        <br>
+        <input type="button" id="catBtn" disabled value="I love catses">
+        <input type="button" id="signupBtn" disabled value="Sign up">
+      </div>
+    </form>
+  </div>
   <script>
     let dog = document.getElementById('dog');
     let cat = document.getElementById('cat');
@@ -55,18 +79,18 @@
     }
 
     let loveCats = (e) => {
-      if(yes.checked === true){
+      if (yes.checked === true) {
         catBtn.disabled = false;
       } else {
         catBtn.disabled = true;
       }
     }
 
-    let popup1 = () =>{
+    let popup1 = () => {
       alert('Signed up for cat facts!');
     }
 
-    let popup2 = () =>{
+    let popup2 = () => {
       alert('Cat, or Dog? Just as cute!');
     }
 
