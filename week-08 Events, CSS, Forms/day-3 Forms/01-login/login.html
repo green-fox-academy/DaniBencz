@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+  <style>
+    body {
+      display: flex;
+      background: lightgray;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: white;
+      padding: 20px;
+      margin: 100px;
+      border-radius: 5px;
+    }
+
+    h2{
+      margin-top: 0;
+    }
+
+    label{
+      margin: 5px;
+    }
+
+    input {
+      display: block;
+      margin: 5px;
+      padding: 5px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>ACCOUNT LOGIN</h1>
+    <form action="" method="POST">
+      <label for="user">USERNAME</label>
+      <input type="text" id="user" name="username">
+      <label for="password">PASSWORD</label>
+      <input type="password" id="password" name="password">
+      <br>
+      <input type="submit" id="submit" value="Login">
+    </form>
+  </div>
+  <script>
+    let password = document.getElementById('password');
+
+
+
+    let login = document.getElementById('submit');
+    let prevent = (e) => {
+      e.preventDefault();
+    }
+    login.addEventListener('click', prevent);
+  </script>
+</body>
+
+</html>

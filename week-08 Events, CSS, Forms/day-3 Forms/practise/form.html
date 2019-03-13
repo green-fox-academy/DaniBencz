@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form</title>
+</head>
+
+<body>
+  <!-- action defines endpoint -->
+  <form class="container" method="POST" action="/send">
+
+    <p>Some Stuff</p>
+    <!-- checkboxes doesn't limit how many are checked -->
+    <input type="checkbox" id="firstC">
+    <label for="firstC">Checkbox</label>
+
+    <p>Other Stuff</p>
+    <!-- type is the input type, name is the key for the JSON -->
+    <input type="radio" name="radio" id="firstR">
+    <label for="firstR">has radio</label>
+    <input type="radio" name="radio" id="secondR">
+    <!-- several radio with same name doesn't allow for several checks -->
+    <label for="secondR">no has radio</label>
+
+    <p>Yet More Stuff</p>
+    <fieldset>
+      <legend>Field Set</legend>
+      <!-- autofocus attribute -->
+      <input type="email" name="email" placeholder="Email" required autofocus>
+      <input type="telephone" name="phone" placeholder="Phone" required>
+
+      <p>p-tag for field-set</p>
+      <!-- pattern attribute -->
+      <input type="text" name="numberplate" pattern="[A-Z]{3}-[0-9]{3}" placeholder="numberplate">
+      <label for="numberplate">numberplate</label>
+      
+    </fieldset>
+
+    <p>Select</p>
+    <select name="select" id="select">
+      <option value="">Sure, bring it on!</option>
+      <option value="">Doncare</option>
+      <!-- where should this show? -->
+      <label for="select">select</label>
+    </select>
+
+    <p>this breaks line for me</p>
+    <input type="number" id="fish" name="number" step="100">
+    <label for="fish">How much is the fish?</label>
+
+    <input type="submit" value="Submit">
+  </form>
+</body>
+
+</html>
