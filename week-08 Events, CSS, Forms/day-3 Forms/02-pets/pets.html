@@ -15,16 +15,16 @@
   <p>What is your favourite pet?</p>
   <form action="url" method="POST">
     <div>
-      <input type="radio" name="pets" id="dog">
+      <input type="radio" name="pets" id="dog" value="dog">
       <label for="dog">Dog</label>
     </div>
     <div>
-      <input type="radio" name="pets" id="cat">
+      <input type="radio" name="pets" id="cat" value="cat">
       <label for="cat">Cat</label>
     </div>
     <div>
-      <input type="radio" name="pets" id="fish">
-      <label for="fush">Viktor the goldfish</label>
+      <input type="radio" name="pets" id="fish" value="fish">
+      <label for="fish">Viktor the goldfish</label>
     </div>
     <p>Do you want to sign up for cat facts?</p>
     <input type="radio" name="wanna" id="yes">
@@ -38,6 +38,46 @@
     </div>
   </form>
   <script>
+    let dog = document.getElementById('dog');
+    let cat = document.getElementById('cat');
+    let fish = document.getElementById('fish');
+    let yes = document.getElementById('yes');
+    let no = document.getElementById('no');
+    let signupBtn = document.getElementById('signupBtn');
+    let catBtn = document.getElementById('catBtn');
+
+    let signup = (e) => {
+      if (dog.checked === true || cat.checked === true) {
+        signupBtn.disabled = false;
+      } else {
+        signupBtn.disabled = true;
+      }
+    }
+
+    let loveCats = (e) => {
+      if(yes.checked === true){
+        catBtn.disabled = false;
+      } else {
+        catBtn.disabled = true;
+      }
+    }
+
+    let popup1 = () =>{
+      alert('Signed up for cat facts!');
+    }
+
+    let popup2 = () =>{
+      alert('Cat, or Dog? Just as cute!');
+    }
+
+    dog.addEventListener('change', signup);
+    cat.addEventListener('change', signup);
+    fish.addEventListener('change', signup);
+    yes.addEventListener('change', loveCats);
+    no.addEventListener('change', loveCats);
+    catBtn.addEventListener('click', popup1);
+    signupBtn.addEventListener('click', popup2);
+
   </script>
 </body>
 
