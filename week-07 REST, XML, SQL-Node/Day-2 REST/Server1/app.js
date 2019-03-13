@@ -67,6 +67,9 @@ app.get('/appenda/:appendable', (req, res) => {
 //middleware to parse .json type payload (request with data in it)
 app.use(express.json());
 
+//this to handle post request from forms
+//app.use(express.urlencoded({extended:true}));
+
 //e.g. /dountil/sum:5 should return 15, /dountil/factor:5 should return 120
 app.post('/dountil/:action', (req, res) => {
   //a GET request doesn't have a body, while the POST has
