@@ -22,7 +22,7 @@ app.use(express.json());
 
 //main page
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', /* {rows} */);
 })
 
 //posting

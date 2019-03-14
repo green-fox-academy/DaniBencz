@@ -12,20 +12,38 @@
 </head>
 
 <body>
-  <div class="header"></div>
+  <div class="header">
+    <p class="main-title">SPACE</p>
+  </div>
+
   <div class="main">
     <div class="content">
-      <div class="post">Post 1</div>
+      <div class="post">
+        <div class="rank">
+          <img src="../assets/upvote.png" class="upvote">
+          <p class="score"><strong>122</strong></p>
+          <img src="../assets/downvote.png" class="downwote">
+        </div>
+        <div class="post-content">
+          <p class="post-title">post-title</p>
+          <p class="post-url">www.post-url.com</p>
+          <a href="">modify</a>
+          <a href="">remove</a>
+        </div>
+      </div>
       <div class="post">Post 2</div>
       <div class="post">Post 3</div>
       <div class="post"></div>
     </div>
+
     <div class="submit">
-      <div class="new-post">SUBMIT NEW POST</div>
+      <div id="postBtn">
+        <p>SUBMIT NEW POST</p>
+      </div>
     </div>
 
   </div>
-
+  <script src="../assets/frontend.js"></script>
 </body>
 
 </html>

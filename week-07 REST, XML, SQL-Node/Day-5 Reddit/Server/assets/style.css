@@ -8,9 +8,18 @@ body{
 .header{
   margin: 10px;
   margin-bottom: 5px;
-  display: block;
+  display: flex;
   background-image: url('./space.jpg');
-  height: 200px;
+  height: 150px;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.main-title{
+  font-size: 25pt;
+  letter-spacing: 2rem;
 }
 
 .main{
@@ -22,22 +31,66 @@ body{
   flex-grow: 0.5;
   height: 200px;
   background: whitesmoke;
+  border-radius: 4px;
 }
 
-.new-post{
-  height: 50px;
+#postBtn{
+  height: 35px;
   background: rgb(74,163,223);
   color: rgb(237,238,237);
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  font-size: 10pt;
+}
+
+#postBtn:hover{
+  filter: brightness(1.1);
+}
+
+#postBtn:active{
+  filter: brightness(0.9);
 }
 
 .content{
   margin: 4px 4px 10px 9px;
   flex-grow: 2;
+  border-radius: 4px;
 }
 
 .post{
+  display: flex;
   margin: 1px;
   height: 100px;
   background: whitesmoke;
+  border-radius: 4px;
+}
+
+.rank{
+  height: 100px;
+  width: 100px;
+  background: blue;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.score{
+  margin: 5px;
+  color: rgb(181, 181, 181);
+}
+
+.post-content{
+  height: 100px;
+  width: 200px;
+  flex-grow: 1;
+  background: gold;
+  border-radius: 4px;
+}
+
+.post-title, post-url{
+  margin: 3px;
 }
