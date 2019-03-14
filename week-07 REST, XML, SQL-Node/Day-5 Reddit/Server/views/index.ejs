@@ -18,22 +18,21 @@
 
   <div class="main">
     <div class="content">
+      <%for(let i= 0; i < rows.length; i++){%>
       <div class="post">
         <div class="rank">
           <img src="../assets/upvote.png" class="upvote">
-          <p class="score"><strong>122</strong></p>
+          <p class="score"><strong><%=rows[i].score%></strong></p>
           <img src="../assets/downvote.png" class="downwote">
         </div>
         <div class="post-content">
-          <p class="post-title">post-title</p>
-          <p class="post-url">www.post-url.com</p>
+          <p class="post-title"><strong><%=rows[i].title%></strong></p>
+          <p class="post-url"><%=rows[i].url%></p>
           <a href="">modify</a>
           <a href="">remove</a>
         </div>
       </div>
-      <div class="post">Post 2</div>
-      <div class="post">Post 3</div>
-      <div class="post"></div>
+      <%}%>
     </div>
 
     <div class="submit">

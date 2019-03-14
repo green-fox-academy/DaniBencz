@@ -1,11 +1,11 @@
-body{
+body {
   margin: 0;
   padding: 0;
   background: lightgray;
   font-family: 'Lato', sans-serif;
 }
 
-.header{
+.header {
   margin: 10px;
   margin-bottom: 5px;
   display: flex;
@@ -17,27 +17,27 @@ body{
   border-radius: 4px;
 }
 
-.main-title{
+.main-title {
   font-size: 25pt;
   letter-spacing: 2rem;
 }
 
-.main{
+.main {
   display: flex;
 }
 
-.submit{
-  margin: 5px 10px 10px 5px; 
+.submit {
+  margin: 5px 10px 10px 5px;
   flex-grow: 0.5;
   height: 200px;
   background: whitesmoke;
   border-radius: 4px;
 }
 
-#postBtn{
+#postBtn {
   height: 35px;
-  background: rgb(74,163,223);
-  color: rgb(237,238,237);
+  background: rgb(74, 163, 223);
+  color: rgb(237, 238, 237);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,21 +45,21 @@ body{
   font-size: 10pt;
 }
 
-#postBtn:hover{
+#postBtn:hover {
   filter: brightness(1.1);
 }
 
-#postBtn:active{
+#postBtn:active {
   filter: brightness(0.9);
 }
 
-.content{
+.content {
   margin: 4px 4px 10px 9px;
   flex-grow: 2;
   border-radius: 4px;
 }
 
-.post{
+.post {
   display: flex;
   margin: 1px;
   height: 100px;
@@ -67,30 +67,46 @@ body{
   border-radius: 4px;
 }
 
-.rank{
+.rank {
   height: 100px;
   width: 100px;
-  background: blue;
-  border-radius: 4px;
+  background: white;
+  border-radius: 4px 0px 0px 4px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.score{
+.score {
   margin: 5px;
   color: rgb(181, 181, 181);
 }
 
-.post-content{
+.post-content {
   height: 100px;
   width: 200px;
   flex-grow: 1;
-  background: gold;
-  border-radius: 4px;
+  background: white;
+  border-radius: 0px 4px 4px 0px;
 }
 
-.post-title, post-url{
-  margin: 3px;
+.post-title {
+  margin: 0;
+  margin-left: 5px;
+  padding: 5px;
+  font-size: 12pt;
+}
+
+.post-url {
+  margin: 0;
+  margin-left: 5px;
+  padding: 5px;
+}
+
+a {
+  margin: 0px;
+  margin-left: 5px;
+  padding: 5px;
+  font-size: 10pt;
 }

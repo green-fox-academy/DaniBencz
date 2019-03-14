@@ -20,9 +20,16 @@ app.set('view engine', 'ejs');
 app.use('/assets', express.static('assets'));
 app.use(express.json());
 
-//main page
+//main page (with ejs)
 app.get('/', (req, res) => {
-  res.render('index', /* {rows} */);
+  conn.query('SELECT * FROM post;', (err, rows) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send();
+      return;
+    }
+    res.render('index', { rows });
+  });
 })
 
 //posting
