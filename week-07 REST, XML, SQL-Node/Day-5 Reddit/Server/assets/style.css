@@ -1,0 +1,43 @@
+body{
+  margin: 0;
+  padding: 0;
+  background: lightgray;
+  font-family: 'Lato', sans-serif;
+}
+
+.header{
+  margin: 10px;
+  margin-bottom: 5px;
+  display: block;
+  background-image: url('./space.jpg');
+  height: 200px;
+}
+
+.main{
+  display: flex;
+}
+
+.submit{
+  margin: 5px 10px 10px 5px; 
+  flex-grow: 0.5;
+  height: 200px;
+  background: whitesmoke;
+}
+
+.new-post{
+  height: 50px;
+  background: rgb(74,163,223);
+  color: rgb(237,238,237);
+  text-align: center;
+}
+
+.content{
+  margin: 4px 4px 10px 9px;
+  flex-grow: 2;
+}
+
+.post{
+  margin: 1px;
+  height: 100px;
+  background: whitesmoke;
+}
