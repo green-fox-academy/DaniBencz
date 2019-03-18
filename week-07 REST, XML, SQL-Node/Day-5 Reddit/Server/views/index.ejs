@@ -19,17 +19,20 @@
   <div class="main">
     <div class="content">
       <%for(let i= 0; i < rows.length; i++){%>
-      <div class="post">
+      <!-- data-postID sets the post ID for later use -->
+      <div class="post" data-postID="<%=rows[i].id%>">
         <div class="rank">
           <img src="../assets/upvote.png" class="upvote">
-          <p class="score"><strong><%=rows[i].score%></strong></p>
-          <img src="../assets/downvote.png" class="downwote">
+          <p class="score"><%=rows[i].score%></p>
+          <img src="../assets/downvote.png" class="downvote">
         </div>
         <div class="post-content">
           <p class="post-title"><strong><%=rows[i].title%></strong></p>
           <p class="post-url"><%=rows[i].url%></p>
-          <a href="">modify</a>
-          <a href="">remove</a>
+          <div class="links">
+            <a href="">modify</a>
+            <a href="">remove</a>
+          </div>
         </div>
       </div>
       <%}%>

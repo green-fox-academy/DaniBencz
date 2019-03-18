@@ -19,6 +19,8 @@ const conn = mysql.createConnection({
 app.set('view engine', 'ejs');
 app.use('/assets', express.static('assets'));
 app.use(express.json());
+//this for form data
+app.use(express.urlencoded({ extended: true }));
 
 //main page (with ejs)
 app.get('/', (req, res) => {
@@ -72,15 +74,25 @@ app.put('/posts/:id/upvote', (req, res) => {
     let id = req.params.id;
     console.log(id);
     let SQL = `UPDATE post SET score=score+1 WHERE id=${id};`;
-    conn.query(SQL, (err, rows) => {
+    //this to make the update
+    conn.query(SQL, (err) => {
       if (err) {
         console.error(err);
         res.status(500).send();
         return;
       }
-      res.status(200).json(rows);
+      //this to send updated score to website
+      conn.query(`SELECT score FROM post WHERE id=${id}`, (err, rows) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send();
+          return;
+        }
+        res.status(200).json(rows);
+      });
     });
   } else {
+    console.log('not upvoted');
     res.send('Invalid format!');
   };
 });
@@ -97,8 +109,15 @@ app.put('/posts/:id/downvote', (req, res) => {
         console.error(err);
         res.status(500).send();
         return;
-      }
-      res.status(200).json(rows);
+        //this to send updated score to website
+      } conn.query(`SELECT score FROM post WHERE id=${id}`, (err, rows) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send();
+          return;
+        }
+        res.status(200).json(rows);
+      });
     });
   } else {
     res.send('Invalid format!');
