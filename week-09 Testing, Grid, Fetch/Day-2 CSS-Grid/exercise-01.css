@@ -1,0 +1,32 @@
+*{
+  border-radius: 10px;
+}
+
+.main{
+  display: grid;
+  grid-template-columns: 2fr 6fr 2fr;
+  height: 160px;
+  background: rgb(176,42,255);
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+.left{
+  background: rgb(255,214,42);
+}
+
+.sixty{
+  background: rgb(81,212,0);
+}
+
+.right{
+  background: rgb(255,214,42);
+}
+
+.box{
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28pt;
+}
