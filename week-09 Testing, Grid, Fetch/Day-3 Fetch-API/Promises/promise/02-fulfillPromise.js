@@ -1,6 +1,6 @@
 'use strict';
 
-var promise = new Promise(function(resolve, reject){
+let promise = new Promise(function (resolve, reject) {
   setTimeout(() => {
     resolve('FULFILLED!');
   }, 300);
