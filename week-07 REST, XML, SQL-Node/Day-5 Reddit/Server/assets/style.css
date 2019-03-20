@@ -29,8 +29,22 @@ body {
 .submit {
   margin: 5px 10px 10px 5px;
   flex-grow: 0.5;
-  height: 200px;
+  height: 230px;
   background: whitesmoke;
+  border-radius: 4px;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+}
+
+label{
+  margin: 5px;
+}
+
+input{
+  margin: 5px;
   border-radius: 4px;
 }
 

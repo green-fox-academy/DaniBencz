@@ -1,0 +1,1 @@
+BEGIN; INSERT INTO owner (name) VALUES('name3'); INSERT INTO post (owner_id, title, url) VALUES(LAST_INSERT_ID(), 'title3', 'url3'); COMMIT;

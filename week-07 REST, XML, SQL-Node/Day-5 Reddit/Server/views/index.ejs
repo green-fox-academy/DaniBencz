@@ -26,12 +26,13 @@
           <p class="score"><%=rows[i].score%></p>
           <img src="../assets/downvote.png" class="downvote">
         </div>
+
         <div class="post-content">
           <p class="post-title"><strong><%=rows[i].title%></strong></p>
           <p class="post-url"><%=rows[i].url%></p>
           <div class="links">
-            <a href="">modify</a>
-            <a href="">remove</a>
+            <a class="modify" href="">modify</a>
+            <a class="remove" href="">remove</a>
           </div>
         </div>
       </div>
@@ -42,6 +43,14 @@
       <div id="postBtn">
         <p>SUBMIT NEW POST</p>
       </div>
+      <form>
+        <label for="user">Username</label>
+        <input type="text" id="user" name="user">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title">
+        <label for="url">URL</label>
+        <input type="text" id="url" name="url">
+      </form>
     </div>
 
   </div>

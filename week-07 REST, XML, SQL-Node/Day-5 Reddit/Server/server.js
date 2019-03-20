@@ -41,9 +41,8 @@ app.post('/json', (req, res) => {
   if (req.get('Content-type') === 'application/json') {
     let title = req.body.title;
     let url = req.body.url;
-    //=========== this needs better implementation
-    let owner = req.body.owner;
-    let SQL = `INSERT INTO post (title, url, owner_id) VALUES ('${title}', '${url}', ${owner});`;
+    let name = req.body.name;
+    let SQL = `BEGIN; INSERT INTO owner (name) VALUES('name1'); INSERT INTO post (owner_id, title, url) VALUES(LAST_INSERT_ID(), 'title1', 'url1'); COMMIT;`;
 
     conn.query(SQL, (err, rows) => {
       if (err) {
@@ -52,7 +51,7 @@ app.post('/json', (req, res) => {
         return;
       }
 
-      SQL = `SELECT * FROM post WHERE title='${title}' AND url='${url}' AND owner_id=${owner};`;
+      SQL = `SELECT * FROM post LEFT JOIN owner WHERE title='${title}' AND url='${url}' AND name=${name};`;
       conn.query(SQL, (err, rows) => {
         if (err) {
           console.error(err);
@@ -68,6 +67,7 @@ app.post('/json', (req, res) => {
 });
 
 //upvoting
+//still needs owners' votes incrementation
 app.put('/posts/:id/upvote', (req, res) => {
   res.set('Content-type', 'application/json');
   if (req.get('Content-type') === 'application/json') {
@@ -98,6 +98,7 @@ app.put('/posts/:id/upvote', (req, res) => {
 });
 
 //downvoting
+//still needs owners' votes decrementation
 app.put('/posts/:id/downvote', (req, res) => {
   res.set('Content-type', 'application/json');
   if (req.get('Content-type') === 'application/json') {
