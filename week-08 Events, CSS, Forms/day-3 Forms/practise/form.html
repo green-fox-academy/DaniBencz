@@ -35,23 +35,36 @@
       <!-- pattern attribute -->
       <input type="text" name="numberplate" pattern="[A-Z]{3}-[0-9]{3}" placeholder="numberplate">
       <label for="numberplate">numberplate</label>
-      
+
     </fieldset>
 
     <p>Select</p>
     <select name="select" id="select">
-      <option value="">Sure, bring it on!</option>
-      <option value="">Doncare</option>
+      <option value="">Select One …</option>
+      <option value="Sure, bring it on!">Sure, bring it on!</option>
+      <option value="Doncare">Doncare</option>
       <!-- where should this show? -->
       <label for="select">select</label>
     </select>
 
-    <p>this breaks line for me</p>
+    <p>this p-tag breaks line for me</p>
     <input type="number" id="fish" name="number" step="100">
     <label for="fish">How much is the fish?</label>
+    
+    <p></p>
 
     <input type="submit" value="Submit">
   </form>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelector('select[name="select"]').onchange = changeEventHandler;
+    }, false);
+    function changeEventHandler(event) {
+      // You can use “this” to refer to the selected element.
+      if (!event.target.value) alert('Please Select One');
+      else alert('You chose ' + event.target.value);
+    }
+  </script>
 </body>
 
 </html>

@@ -4,12 +4,25 @@ const express = require('express');
 const app = express();
 
 app.get('/groot', (req, res) => {
-  res.send('yohoo');
+  let input = req.query;
+  res.set('Content-type', 'application/json');
+  if(input.message === undefined){
+    res.json({
+    "error": "I am Groot!"
+  });
+  } else {
+    res.json({
+      "received": `${input.message}`,
+      "translated": "I am Groot!"
+    });
+  }
 });
 
-app.get('/groot/:any', (req, res) => {
-  if (req.params) {
-    res.status(200).send();
+app.get('/teapot/:what', (req, res) => {
+  if (req.params === null) {
+    res.send();
+  } else {
+    res.status(200).send("I'm Groot!");
   }
 });
 
