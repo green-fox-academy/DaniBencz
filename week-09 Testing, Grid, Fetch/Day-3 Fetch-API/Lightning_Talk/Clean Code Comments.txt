@@ -1,0 +1,27 @@
+CleanCode - Comments
+
+At best, a necessary evil.
+
+The proper use of comments is to compensate for our failure to express ourself in code.
+The purpose of a comment is to explain code that does not explain itself.
+
+They lie, because programmers can’t realistically maintain them. Most of the time they are not worth the bits they consume.
+
+Inaccurate comments are far worse than no comments at all.
+
+Truth can only be found in one place: the code. Only the code can truly tell you what it does.
+
+// Check to see if the employee is eligible for full benefits
+if ((employee.flags & HOURLY_FLAG) && (employee.age > 65))
+	or
+if (employee.isEligibleForFullBenefits())
+
+Types:
+-explanatory(what it is, why is there, etc)
+-todo (to elaborate, to review, delete, etc.)
+-marking 
+-loval version control
+-comment-out-code
+
+
+*
