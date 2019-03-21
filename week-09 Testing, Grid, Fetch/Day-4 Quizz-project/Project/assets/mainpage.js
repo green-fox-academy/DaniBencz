@@ -1,24 +1,32 @@
 'use strict';
 
+let answers = document.querySelector('.answers');
+let question = document.querySelector('.question')
+let buttons = document.querySelectorAll('.button');
 let score = 0;
 
-element.addEventListener('submit', (sendEvent) => {
-
+let fillpage = () => {
   let http = new XMLHttpRequest();
-  http.open('POST', 'http://localhost:3000/', true);
-  //http.setRequestHeader('Content-Type', 'application/json');
-  http.send(JSON.stringify({ "key1": element1.value, "key2": element2.value }));
+  http.open('GET', 'http://localhost:3000/api/game', true);
+  http.send();
   console.log('submitted');
 
   http.onload = (loadEvent) => {
     let data = JSON.parse(http.responseText);
-    const status = loadEvent.target.status || 0;
-    if (status === 200) {
-     //do this
-    } else if (status === 400) {
-      //or this
-    } else {
-      console.log('No response from the server');
+    question.textContent = data[0].question;
+    for(let i = 0; i < buttons.length; i++){
+      buttons[i].textContent = data[i].answer;
+      buttons[i].setAttribute(name, data[i].is_correct);
     }
-  }
+  };
+}
+
+answers.addEventListener('click', (sendEvent) => {
+  console.log('click');
+  //colors button green if goog answer, red if bad
+  //increments csore
+  //after 3 sec puts new answer
+  fillpage();
 });
+
+fillpage();
