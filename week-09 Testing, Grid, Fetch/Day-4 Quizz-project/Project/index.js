@@ -25,12 +25,13 @@ app.get('/game', (req, res) => {
 });
 
 app.get('/questions', (req, res) => {
-  //It should render a static HTML, as a manage questions page.
+  res.sendFile(path.join(__dirname, 'assets/manage.html'));
 })
 
 app.get('/api/game', (req, res) => {
   res.set('Content-type', 'application/json');
   let randomID = Math.floor(Math.random() * 10) + 1;
+  //this should in fact query the ids first
   let SQL = `SELECT questions.id, question, answer, is_correct FROM questions LEFT JOIN answers ON questions.id=question_id WHERE question_id=${randomID}`;
   conn.query(SQL, (err, rows) => {
     if (err) {
@@ -55,13 +56,64 @@ app.get('/api/questions', (req, res) => {
   });
 });
 
-app.post('api/questions', (req, res) => {
-  //If you fill the form and click on the submit button, it should add a new question and its answers
+app.post('/api/questions', (req, res) => {
+  let question = req.body.question;
+  let a1 = req.body.answers[0].answer_1;
+  let a2 = req.body.answers[1].answer_2;
+  let a3 = req.body.answers[2].answer_3;
+  let a4 = req.body.answers[3].answer_4;
+  let ic1 = req.body.answers[0].is_correct;
+  let ic2 = req.body.answers[1].is_correct;
+  let ic3 = req.body.answers[2].is_correct;
+  let ic4 = req.body.answers[3].is_correct;
+  let answers = [a1, a2, a3, a4];
+  let isCorrect = [ic1, ic2, ic3, ic4];
+
+  let SQL = `INSERT INTO questions (question) VALUES ('${question}');`;
+  conn.query(SQL, (err, rows) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send();
+      return;
+    }
+    SQL = `SELECT id FROM questions WHERE question='${question}';`;
+    conn.query(SQL, (err, rows) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send();
+        return;
+      }
+      let id = rows[0].id;
+      SQL = `INSERT INTO answers (question_id, answer, is_correct) VALUES (${id}, '${answers[0]}', ${isCorrect[0]});
+            INSERT INTO answers (question_id, answer, is_correct) VALUES (${id}, '${answers[1]}', ${isCorrect[1]});
+            INSERT INTO answers (question_id, answer, is_correct) VALUES (${id}, '${answers[2]}', ${isCorrect[2]});
+            INSERT INTO answers (question_id, answer, is_correct) VALUES (${id}, '${answers[3]}', ${isCorrect[3]});`;
+      conn.query(SQL, (err, rows) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send();
+          return;
+        }
+        console.log('database updated');
+        res.send('database updated');
+      });
+    });
+  });
 })
 
-app.delete('api/questions/:id', (req, res) => {
-  //If you click on the delete link (which is next to the question)
-  //It should delete the question and its answers by id
+app.delete('/api/questions/:id', (req, res) => {
+  let id = req.params.id;
+  let SQL = `DELETE FROM questions WHERE id=${id};
+            DELETE FROM answers WHERE question_id=${id};`;
+  conn.query(SQL, (err, rows) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send();
+      return;
+    }
+    console.log('question deleted');
+    res.send('question deleted');
+  });
 })
 
 app.listen(PORT, () => {
