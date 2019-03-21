@@ -13,7 +13,8 @@ const conn = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE
+  database: process.env.DB_DATABASE,
+  multipleStatements: true
 });
 
 app.use('/assets', express.static('assets'));
@@ -27,24 +28,34 @@ app.get('/questions', (req, res) => {
   //It should render a static HTML, as a manage questions page.
 })
 
-app.get('/api/game', (res, req) => {
+app.get('/api/game', (req, res) => {
   //sends data of new random question-answer pair
   res.set('Content-type', 'application/json');
-  let random = Math.floor(Math.random() * 40) + 1;
-  let SQL = `SELECT * FROM tables;`;
+  let randomID = Math.floor(Math.random() * 10) + 1;
+  let SQL = `SELECT questions.id, question, answer, is_correct FROM questions LEFT JOIN answers ON questions.id=question_id WHERE question_id=${randomID}`;
   conn.query(SQL, (err, rows) => {
     if (err) {
       console.error(err);
       res.status(500).send();
       return;
     }
-    res.status(200).send(rows);
+    res.send(rows);
   });
 });
 
 app.get('api/questions', (req, res) => {
   //This endpoint should return all the questions.
-})
+  res.set('Content-type', 'application/json');
+  let SQL = `SELECT * FROM questions;`;
+  conn.query(SQL, (err, rows) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send();
+      return;
+    }
+    res.send(rows);
+  });
+});
 
 app.post('api/questions', (req, res) => {
   //If you fill the form and click on the submit button, it should add a new question and its answers
