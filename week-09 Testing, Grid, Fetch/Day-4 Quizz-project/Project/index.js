@@ -30,16 +30,24 @@ app.get('/questions', (req, res) => {
 
 app.get('/api/game', (req, res) => {
   res.set('Content-type', 'application/json');
-  let randomID = Math.floor(Math.random() * 10) + 1;
-  //this should in fact query the ids first
-  let SQL = `SELECT questions.id, question, answer, is_correct FROM questions LEFT JOIN answers ON questions.id=question_id WHERE question_id=${randomID}`;
+  let SQL = `SELECT id FROM questions;`;
   conn.query(SQL, (err, rows) => {
     if (err) {
       console.error(err);
       res.status(500).send();
       return;
     }
-    res.send(rows);
+    let random = Math.floor(Math.random() * rows.length) + 1;
+    let id = rows[random].id;
+    SQL = `SELECT questions.id, question, answer, is_correct FROM questions LEFT JOIN answers ON questions.id=question_id WHERE question_id=${id}`;
+    conn.query(SQL, (err, rows) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send();
+        return;
+      }
+      res.send(rows);
+    });
   });
 });
 
