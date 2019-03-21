@@ -29,7 +29,6 @@ app.get('/questions', (req, res) => {
 })
 
 app.get('/api/game', (req, res) => {
-  //sends data of new random question-answer pair
   res.set('Content-type', 'application/json');
   let randomID = Math.floor(Math.random() * 10) + 1;
   let SQL = `SELECT questions.id, question, answer, is_correct FROM questions LEFT JOIN answers ON questions.id=question_id WHERE question_id=${randomID}`;
@@ -43,8 +42,7 @@ app.get('/api/game', (req, res) => {
   });
 });
 
-app.get('api/questions', (req, res) => {
-  //This endpoint should return all the questions.
+app.get('/api/questions', (req, res) => {
   res.set('Content-type', 'application/json');
   let SQL = `SELECT * FROM questions;`;
   conn.query(SQL, (err, rows) => {
