@@ -16,7 +16,7 @@ let fillpage = () => {
     question.textContent = data[0].question;
     for(let i = 0; i < buttons.length; i++){
       buttons[i].textContent = data[i].answer;
-      buttons[i].setAttribute(name, data[i].is_correct);
+      buttons[i].setAttribute('name', `${data[i].is_correct}`);
     }
   };
 }
@@ -24,7 +24,7 @@ let fillpage = () => {
 answers.addEventListener('click', (sendEvent) => {
   console.log('click');
   //colors button green if goog answer, red if bad
-  //increments csore
+  //increments score, if answer correct
   //after 3 sec puts new answer
   fillpage();
 });
