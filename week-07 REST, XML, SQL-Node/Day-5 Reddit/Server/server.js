@@ -42,6 +42,7 @@ app.post('/json', (req, res) => {
     let title = req.body.title;
     let url = req.body.url;
     let name = req.body.name;
+    //https://github.com/mysqljs/mysql#transactions
     let SQL = `BEGIN; INSERT INTO owner (name) VALUES('name1'); INSERT INTO post (owner_id, title, url) VALUES(LAST_INSERT_ID(), 'title1', 'url1'); COMMIT;`;
 
     conn.query(SQL, (err, rows) => {
