@@ -98,7 +98,7 @@ input{
   font-weight: bold;
 }
 
-.post-content {
+.postContent {
   display: flex;
   flex-direction: column;
   justify-content: center;

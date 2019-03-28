@@ -5,6 +5,7 @@ const mysql = require('mysql');
 const express = require('express');
 const app = express();
 const PORT = 3000;
+const path = require('path');
 
 const conn = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -15,12 +16,11 @@ const conn = mysql.createConnection({
 
 // = = = "Reddit" Backend Server = = =
 
-//seting view engine and middleware
-app.set('view engine', 'ejs');
+//app.set('view engine', 'ejs');
 app.use('/assets', express.static('assets'));
 app.use(express.json());
-//this for form data
-app.use(express.urlencoded({ extended: true }));
+//in case form builtin function
+//app.use(express.urlencoded({ extended: true }));
 
 //main page (with ejs)
 app.get('/', (req, res) => {
@@ -30,7 +30,8 @@ app.get('/', (req, res) => {
       res.status(500).send();
       return;
     }
-    res.render('index', { rows });
+    //res.render('index', { rows });
+    res.sendFile(path.join(__dirname, 'assets/index.html'));
   });
 })
 
@@ -153,5 +154,5 @@ app.get('/posts', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running at ${PORT}`);
+  console.log(`Server is running at port ${PORT}`);
 });
