@@ -16,7 +16,6 @@ const conn = mysql.createConnection({
 });
 
 // = = = "Reddit" Backend Server = = =
-// = = = without use of promises = = =
 
 //app.set('view engine', 'ejs');
 app.use('/assets', express.static('assets'));
@@ -24,7 +23,6 @@ app.use(express.json());
 //in case form builtin function
 //app.use(express.urlencoded({ extended: true }));
 
-//main page (with ejs)
 app.get('/', (req, res) => {
   conn.query('SELECT * FROM post;', (err, rows) => {
     if (err) {
@@ -54,7 +52,7 @@ app.post('/json', (req, res) => {
         res.status(500).send();
         return;
       } else if (rows.length !== 0) {
-        res.send({'message':'name in use'});
+        res.send({ 'message': 'name in use' });
       } else {
         SQL = `INSERT INTO owner (name) VALUES('${name}');`;
         conn.query(SQL, (err, rows) => {
@@ -98,64 +96,98 @@ app.post('/json', (req, res) => {
   };
 });
 
-//upvoting
 //still needs owners' votes incrementation
 app.put('/posts/:id/upvote', (req, res) => {
   res.set('Content-type', 'application/json');
   if (req.get('Content-type') === 'application/json') {
     let id = req.params.id;
-    console.log(id);
-    let SQL = `UPDATE post SET score=score+1 WHERE id=${id};`;
-    //this to make the update
-    conn.query(SQL, (err) => {
-      if (err) {
+    upvoteScore(id)
+      .then((rows) => {
+        sendScore(id)
+          .then((rows) => {
+            console.log('upvoted');
+            res.status(200).json(rows);
+          })
+          .catch((err) => {
+            console.error(err);
+            res.status(500).send();
+          });
+      })
+      .catch((err) => {
         console.error(err);
         res.status(500).send();
-        return;
-      }
-      //this to send updated score to website
-      conn.query(`SELECT score FROM post WHERE id=${id}`, (err, rows) => {
-        if (err) {
-          console.error(err);
-          res.status(500).send();
-          return;
-        }
-        res.status(200).json(rows);
       });
-    });
   } else {
     console.log('not upvoted');
     res.send('Invalid format!');
   };
 });
 
-//downvoting
 //still needs owners' votes decrementation
 app.put('/posts/:id/downvote', (req, res) => {
   res.set('Content-type', 'application/json');
   if (req.get('Content-type') === 'application/json') {
     let id = req.params.id;
-    console.log(id);
-    let SQL = `UPDATE post SET score=score-1 WHERE id=${id};`;
-    conn.query(SQL, (err, rows) => {
-      if (err) {
+    downvoteScore(id)
+      .then((rows) => {
+        sendScore(id)
+          .then((rows) => {
+            console.log('downvoted');
+            res.status(200).json(rows);
+          })
+          .catch((err) => {
+            console.error(err);
+            res.status(500).send();
+          });
+      })
+      .catch((err) => {
         console.error(err);
         res.status(500).send();
-        return;
-        //this to send updated score to website
-      } conn.query(`SELECT score FROM post WHERE id=${id}`, (err, rows) => {
-        if (err) {
-          console.error(err);
-          res.status(500).send();
-          return;
-        }
-        res.status(200).json(rows);
       });
-    });
   } else {
+    console.log('not upvoted');
     res.send('Invalid format!');
   };
 });
+
+const upvoteScore = (id) => {
+  return new Promise((resolve, reject) => {
+    let SQL = `UPDATE post SET score=score+1 WHERE id=${id};`;
+    conn.query(SQL, (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      };
+    });
+  });
+};
+
+const downvoteScore = (id) => {
+  return new Promise((resolve, reject) => {
+    let SQL = `UPDATE post SET score=score-1 WHERE id=${id};`;
+    conn.query(SQL, (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      };
+    });
+  });
+};
+
+const sendScore = (id) => {
+  return new Promise((resolve, reject) => {
+    let SQL = `SELECT score FROM post WHERE id=${id};`;
+    conn.query(SQL, (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      };
+    });
+  });
+};
 
 //query users
 app.get('/owner', (req, res) => {
