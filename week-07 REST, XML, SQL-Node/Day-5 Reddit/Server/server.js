@@ -11,7 +11,8 @@ const conn = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE
+  database: process.env.DB_DATABASE,
+  multipleStatements: true
 });
 
 // = = = "Reddit" Backend Server = = =
@@ -43,25 +44,53 @@ app.post('/json', (req, res) => {
     let title = req.body.title;
     let url = req.body.url;
     let name = req.body.name;
-    //https://github.com/mysqljs/mysql#transactions
-    let SQL = `BEGIN; INSERT INTO owner (name) VALUES('name1'); INSERT INTO post (owner_id, title, url) VALUES(LAST_INSERT_ID(), 'title1', 'url1'); COMMIT;`;
+    let SQL = `SELECT name FROM owner WHERE name='${name}';`;
+    let ownerID = null;
 
     conn.query(SQL, (err, rows) => {
       if (err) {
         console.error(err);
         res.status(500).send();
         return;
-      }
-
-      SQL = `SELECT * FROM post LEFT JOIN owner WHERE title='${title}' AND url='${url}' AND name=${name};`;
-      conn.query(SQL, (err, rows) => {
-        if (err) {
-          console.error(err);
-          res.status(500).send();
-          return;
-        }
-        res.status(200).json(rows);
-      });
+      } else if (rows.length !== 0) {
+        res.send({'message':'name in use'});
+      } else {
+        SQL = `INSERT INTO owner (name) VALUES('${name}');`;
+        conn.query(SQL, (err, rows) => {
+          if (err) {
+            console.error(err);
+            res.status(500).send();
+            return;
+          }
+          SQL = `SELECT id FROM owner WHERE name='${name}';`;
+          conn.query(SQL, (err, rows) => {
+            if (err) {
+              console.error(err);
+              res.status(500).send();
+              return;
+            } else {
+              ownerID = rows[0].id;
+            }
+            SQL = `INSERT INTO post (title, url, owner_id) VALUES('${title}', '${url}', ${ownerID});`;
+            conn.query(SQL, (err, rows) => {
+              if (err) {
+                console.error(err);
+                res.status(500).send();
+                return;
+              }
+              SQL = `SELECT * FROM post LEFT JOIN owner ON owner_id=owner.id WHERE title='${title}' AND url='${url}' AND name='${name}';`;
+              conn.query(SQL, (err, rows) => {
+                if (err) {
+                  console.error(err);
+                  res.status(500).send();
+                  return;
+                }
+                res.status(200).json(rows);
+              });
+            });
+          });
+        });
+      };
     });
   } else {
     res.send('Invalid format!');
