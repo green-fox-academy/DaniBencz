@@ -97,7 +97,11 @@ let newPost = () => {
   http.onload = () => {
     console.log('submitted');
     let data = JSON.parse(http.responseText);
-    drawPost(data);
+    if (data.message === 'name in use') {
+      alert('Sorry, name already taken!')
+    } else {
+      drawPost(data);
+    }
   };
 };
 

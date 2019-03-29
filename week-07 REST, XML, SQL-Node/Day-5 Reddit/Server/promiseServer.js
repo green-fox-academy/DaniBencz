@@ -44,8 +44,6 @@ app.post('/json', (req, res) => {
     let url = req.body.url;
     let name = req.body.name;
     let SQL = `SELECT name FROM owner WHERE name='${name}';`;
-    let ownerID = null;
-
     conn.query(SQL, (err, rows) => {
       if (err) {
         console.error(err);
@@ -54,41 +52,23 @@ app.post('/json', (req, res) => {
       } else if (rows.length !== 0) {
         res.send({ 'message': 'name in use' });
       } else {
-        SQL = `INSERT INTO owner (name) VALUES('${name}');`;
-        conn.query(SQL, (err, rows) => {
-          if (err) {
+        insertOwner(name)
+          .then(rows => {
+            return findOwnerId(name)
+          })
+          .then(ownerID => {
+            return insertPost(title, url, ownerID)
+          })
+          .then(rows => {
+            return returnPostInfo(title, url, name)
+          })
+          .then(rows => {
+            res.status(200).json(rows);
+          })
+          .catch(err => {
             console.error(err);
             res.status(500).send();
-            return;
-          }
-          SQL = `SELECT id FROM owner WHERE name='${name}';`;
-          conn.query(SQL, (err, rows) => {
-            if (err) {
-              console.error(err);
-              res.status(500).send();
-              return;
-            } else {
-              ownerID = rows[0].id;
-            }
-            SQL = `INSERT INTO post (title, url, owner_id) VALUES('${title}', '${url}', ${ownerID});`;
-            conn.query(SQL, (err, rows) => {
-              if (err) {
-                console.error(err);
-                res.status(500).send();
-                return;
-              }
-              SQL = `SELECT * FROM post LEFT JOIN owner ON owner_id=owner.id WHERE title='${title}' AND url='${url}' AND name='${name}';`;
-              conn.query(SQL, (err, rows) => {
-                if (err) {
-                  console.error(err);
-                  res.status(500).send();
-                  return;
-                }
-                res.status(200).json(rows);
-              });
-            });
           });
-        });
       };
     });
   } else {
@@ -96,28 +76,72 @@ app.post('/json', (req, res) => {
   };
 });
 
+const insertOwner = (name) => {
+  return new Promise((resolve, reject) => {
+    let SQL = `INSERT INTO owner (name) VALUES('${name}');`;
+    conn.query(SQL, (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      };
+    });
+  });
+};
+
+const findOwnerId = (name) => {
+  return new Promise((resolve, reject) => {
+    let SQL = `SELECT id FROM owner WHERE name='${name}';`;
+    conn.query(SQL, (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        let ownerID = rows[0].id;
+        resolve(ownerID);
+      };
+    });
+  });
+};
+
+const insertPost = (title, url, ownerID) => {
+  return new Promise((resolve, reject) => {
+    let SQL = `INSERT INTO post (title, url, owner_id) VALUES('${title}', '${url}', ${ownerID});`;
+    conn.query(SQL, (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      };
+    });
+  });
+};
+
+const returnPostInfo = (title, url, name) => {
+  return new Promise((resolve, reject) => {
+    let SQL = `SELECT * FROM post LEFT JOIN owner ON owner_id=owner.id WHERE title='${title}' AND url='${url}' AND name='${name}';`;
+    conn.query(SQL, (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      };
+    });
+  });
+};
+
 //still needs owners' votes incrementation
 app.put('/posts/:id/upvote', (req, res) => {
   res.set('Content-type', 'application/json');
   if (req.get('Content-type') === 'application/json') {
     let id = req.params.id;
     upvoteScore(id)
-      .then(rows => {
-        //return is important here
-        return sendScore(id)
-      })
-      .then(rows => {
-        console.log('upvoted');
-        res.status(200).json(rows);
-      })
+      .then(rows => sendScore(id))
+      .then(rows => res.status(200).json(rows))
       .catch(err => {
         console.error(err);
         res.status(500).send();
       });
-  } else {
-    console.log('not upvoted');
-    res.send('Invalid format!');
-  };
+  } else { res.send('Invalid format!'); };
 });
 
 //still needs owners' votes decrementation
@@ -126,34 +150,31 @@ app.put('/posts/:id/downvote', (req, res) => {
   if (req.get('Content-type') === 'application/json') {
     let id = req.params.id;
     downvoteScore(id)
-      .then(rows => {
-        return sendScore(id)
-      })
-      .then(rows => {
-        console.log('downvoted');
-        res.status(200).json(rows);
-      })
+      //if not using shorthands, gotta write return too
+      .then(rows => { return sendScore(id) })
+      .then(rows => { res.status(200).json(rows); })
       .catch(err => {
         console.error(err);
         res.status(500).send();
       });
-  } else {
-    console.log('not upvoted');
-    res.send('Invalid format!');
-  };
+  } else { res.send('Invalid format!'); };
 });
 
 const upvoteScore = (id) => {
-  return new Promise((resolve, reject) => {
+  //option 1
+  let promise = new Promise((resolve, reject) => {
     let SQL = `UPDATE post SET score=score+1 WHERE id=${id};`;
     conn.query(SQL, (err, rows) => {
       if (err) { reject(err); }
       else { resolve(rows); };
     });
   });
+  console.log(promise);
+  return promise;
 };
 
 const downvoteScore = (id) => {
+  //option 2
   return new Promise((resolve, reject) => {
     let SQL = `UPDATE post SET score=score-1 WHERE id=${id};`;
     conn.query(SQL, (err, rows) => {
