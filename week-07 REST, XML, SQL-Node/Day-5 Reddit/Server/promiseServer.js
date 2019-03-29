@@ -102,18 +102,15 @@ app.put('/posts/:id/upvote', (req, res) => {
   if (req.get('Content-type') === 'application/json') {
     let id = req.params.id;
     upvoteScore(id)
-      .then((rows) => {
-        sendScore(id)
-          .then((rows) => {
-            console.log('upvoted');
-            res.status(200).json(rows);
-          })
-          .catch((err) => {
-            console.error(err);
-            res.status(500).send();
-          });
+      .then(rows => {
+        //return is important here
+        return sendScore(id)
       })
-      .catch((err) => {
+      .then(rows => {
+        console.log('upvoted');
+        res.status(200).json(rows);
+      })
+      .catch(err => {
         console.error(err);
         res.status(500).send();
       });
@@ -129,18 +126,14 @@ app.put('/posts/:id/downvote', (req, res) => {
   if (req.get('Content-type') === 'application/json') {
     let id = req.params.id;
     downvoteScore(id)
-      .then((rows) => {
-        sendScore(id)
-          .then((rows) => {
-            console.log('downvoted');
-            res.status(200).json(rows);
-          })
-          .catch((err) => {
-            console.error(err);
-            res.status(500).send();
-          });
+      .then(rows => {
+        return sendScore(id)
       })
-      .catch((err) => {
+      .then(rows => {
+        console.log('downvoted');
+        res.status(200).json(rows);
+      })
+      .catch(err => {
         console.error(err);
         res.status(500).send();
       });
@@ -154,11 +147,8 @@ const upvoteScore = (id) => {
   return new Promise((resolve, reject) => {
     let SQL = `UPDATE post SET score=score+1 WHERE id=${id};`;
     conn.query(SQL, (err, rows) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(rows);
-      };
+      if (err) { reject(err); }
+      else { resolve(rows); };
     });
   });
 };
